@@ -1,11 +1,9 @@
 {
-  description = "Mi sistema NixOS a medida";
+  description = "Mi sistema NixOS a medida - Multi-Host";
 
   inputs = {
-    # Usaremos la rama inestable para tener las últimas versiones de Wayland y Sway
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     
-    # Home Manager para controlar tus dotfiles y el espacio de usuario
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,23 +12,45 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      
+      # ==========================================
+      # PERFIL 1: MÁQUINA VIRTUAL ACTUAL (PC 1)
+      # ==========================================
+      vm-principal = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./hardware-configuration.nix
+          ./hardware-vm-principal.nix # <-- Hardware específico de esta máquina
           ./configuration.nix
           
-          # Módulo de Home Manager como parte del sistema
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            # Aquí vinculamos a tu usuario "amoreira" con su configuración
             home-manager.users.amoreira = import ./home.nix;
           }
         ];
       };
+
+      # ==========================================
+      # PERFIL 2: NUEVA MÁQUINA VIRTUAL (PC 2)
+      # ==========================================
+      vm-secundaria = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hardware-vm-secundaria.nix # <-- Marcador de posición para la otra PC
+          ./configuration.nix
+          
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.amoreira = import ./home.nix;
+          }
+        ];
+      };
+
     };
   };
 }
