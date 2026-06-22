@@ -1,0 +1,8 @@
+# Ignorar enlaces simbólicos de compilación de Nix
+result
+result-*
+
+# Ignorar archivos temporales y de swap de editores
+*~
+.*.swp
+.DS_Store

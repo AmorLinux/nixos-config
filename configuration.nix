@@ -82,7 +82,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+    services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -98,9 +98,19 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
 
-  services.openssh.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; 
+
+  # Habilitar gráficos (vital para el rendimiento en Wayland)
+  hardware.graphics.enable = true;
+
+  # Habilitar la base de Sway a nivel sistema
+  programs.sway.enable = true;
+
+  # Polkit para la escalada de privilegios en interfaz gráfica
+  security.polkit.enable = true;
+
+  virtualisation.vmware.guest.enable = true;
 
 }
 
