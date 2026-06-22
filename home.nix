@@ -13,6 +13,6 @@
   # Aquí irán los paquetes exclusivos de tu usuario
   home.packages = with pkgs; [
     htop
-    neofetch
+    fastfetch
   ];
 }
