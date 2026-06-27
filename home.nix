@@ -113,5 +113,44 @@ programs.waybar = {
     fastfetch
     kitty
     wofi
+    libnotify
   ];
+
+  # ==========================================
+  # SISTEMA DE NOTIFICACIONES (MAKO)
+  # ==========================================
+  services.mako = {
+    enable = true;
+    font = "Inter 11";
+    backgroundColor = "#1e1e2eE6"; # Fondo oscuro translúcido
+    textColor = "#cdd6f4";
+    borderColor = "#89b4fa"; # Borde azul moderno
+    borderRadius = 8;
+    borderSize = 2;
+    defaultTimeout = 5000; # Las notificaciones desaparecen en 5 segundos
+  };
+
+  # ==========================================
+  # BLOQUEO DE PANTALLA (SWAYLOCK-EFFECTS)
+  # ==========================================
+  programs.swaylock = {
+    enable = true;
+    package = pkgs.swaylock-effects;
+    settings = {
+      clock = true;
+      datestr = "%a, %d de %B";
+      screenshots = true;
+      effect-blur = "7x5";      # Efecto de desenfoque del fondo
+      effect-vignette = "0.5:0.5";
+      indicator = true;
+      indicator-radius = 100;
+      indicator-thickness = 7;
+      ring-color = "#89b4fa";   # Anillo azul
+      key-hl-color = "#a6e3a1"; # Resalte verde al presionar teclas
+      text-color = "#cdd6f4";
+      inside-color = "#1e1e2e80";
+      inside-clear-color = "#1e1e2e80";
+      ring-clear-color = "#f38ba8";
+    };
+  };
 }

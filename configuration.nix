@@ -112,6 +112,11 @@
 
   virtualisation.vmware.guest.enable = true;
 
+
+
+  # Permiso de autenticación para el bloqueador de pantalla
+  security.pam.services.swaylock = {};
+
 }
 
 
