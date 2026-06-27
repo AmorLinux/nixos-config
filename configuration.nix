@@ -117,6 +117,22 @@
   # Permiso de autenticación para el bloqueador de pantalla
   security.pam.services.swaylock = {};
 
+# ==========================================
+  # GESTOR DE INICIO DE SESIÓN (GREETD + TUIGREET)
+  # ==========================================
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd sway";
+        user = "greeter";
+      };
+    };
+  };
+
+  # Evita que los mensajes de log del sistema ensucien la pantalla de login de tuigreet
+  boot.consoleLogLevel = 3;
+
 }
 
 
