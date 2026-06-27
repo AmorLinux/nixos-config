@@ -37,7 +37,7 @@
       
       # Lanzamos Waybar al iniciar Sway
       startup = [
-        { command = "waybar"; always = true; }
+        { command = "pkill waybar; waybar"; always = true; }
       ];
     };
   };
