@@ -17,14 +17,15 @@
       export WLR_NO_HARDWARE_CURSORS=1
     '';
     config = {
-      modifier = "Mod4";
+      modifier = "Mod1";
       terminal = "kitty";
+      menu = "wofi";
       gaps = {
         inner = 8;
         outer = 4;
       };
       window = {
-        border = 2;
+        border = 1;
         titlebar = false;
       };
       fonts = {
@@ -32,28 +33,93 @@
         size = 10.0;
       };
       
-      # Apagamos la barra por defecto de Sway
-      bars = [];
+      # ¡AQUÍ ESTÁ EL FONDO PLOMITO!
+      output = {
+        "*" = { bg = "#1e1e2e solid_color"; };
+      };
       
-      # Lanzamos Waybar al iniciar Sway
-      startup = [
-        { command = "pkill waybar; waybar"; always = true; }
+      # ENGANCHAMOS WAYBAR DE FORMA NATIVA Y SEGURA
+      bars = [
+        { command = "${pkgs.waybar}/bin/waybar"; }
       ];
     };
   };
 
 
-programs.waybar = {
+  programs.waybar = {
     enable = true;
     settings = {
       mainBar = {
         layer = "top";
-        position = "top"; # La barra superior luce más moderna
+        position = "top";
         height = 34;
         spacing = 6;
+        
         modules-left = [ "sway/workspaces" "sway/window" ];
         modules-center = [ "clock" ];
-        modules-right = [ "network" "memory" "cpu" ];
+        # Agregamos todos los sensores solicitados
+        modules-right = [ 
+          "pulseaudio" 
+          "pulseaudio#microphone" 
+          "network" 
+          "sway/language" 
+          "backlight" 
+          "cpu" 
+          "memory" 
+          "temperature" 
+          "power-profiles-daemon" 
+          "battery" 
+        ];
+
+        # --- Configuración de los módulos ---
+        "sway/workspaces" = {
+          disable-scroll = true;
+          all-outputs = true;
+        };
+        "clock" = {
+          format = "{:%H:%M - %d/%m/%Y}";
+          tooltip-format = "<tt>{calendar}</tt>";
+        };
+        "pulseaudio" = {
+          format = "{volume}% VOL";
+          format-muted = "MUTE";
+          on-click = "pavucontrol"; 
+        };
+        "pulseaudio#microphone" = {
+          format = "{format_source}";
+          format-source = "{volume}% MIC";
+          format-source-muted = "MIC OFF";
+          on-click = "pavucontrol -t 4"; # Abre la pestaña de entrada en pavucontrol
+        };
+        "network" = {
+          format-wifi = "{essid} WiFi";
+          format-ethernet = "LAN";
+          format-disconnected = "Desconectado";
+        };
+        "sway/language" = {
+          format = "TECL: {}";
+        };
+        "backlight" = {
+          format = "{percent}% LUZ";
+        };
+        "cpu" = {
+          format = "{usage}% CPU";
+        };
+        "memory" = {
+          format = "{}% RAM";
+        };
+        "temperature" = {
+          format = "{temperatureC}°C";
+        };
+        "power-profiles-daemon" = {
+          format = "{profile}";
+          tooltip-format = "Perfil de energía: {profile}";
+        };
+        "battery" = {
+          format = "{capacity}% BAT";
+          format-charging = "{capacity}% CHG";
+          states = { warning = 30; critical = 15; };
+        };
       };
     };
 
@@ -65,23 +131,24 @@ programs.waybar = {
         border: none;
       }
 
-      /* Fondo de la barra transparente para que los módulos floten */
       window#waybar {
         background-color: transparent;
         color: #ffffff;
       }
 
-      /* Estilo base para los módulos con bordes redondeados */
-      #workspaces, #window, #clock, #network, #memory, #cpu {
+      /* Estilo de píldora para absolutamente todos los módulos */
+      #workspaces, #window, #clock, #pulseaudio, #network, #language, #backlight, #cpu, #memory, #temperature, #power-profiles-daemon, #battery {
         background-color: rgba(20, 20, 20, 0.85);
         border-radius: 8px;
         margin-top: 6px;
         margin-bottom: 0px;
         padding: 0 12px;
+        margin-right: 6px;
       }
 
       #workspaces {
         padding: 0 4px;
+        margin-left: 6px;
       }
 
       #workspaces button {
@@ -91,18 +158,23 @@ programs.waybar = {
         margin: 4px 2px;
       }
 
+      #workspaces button:hover {
+        background-color: #f8f9fa; 
+        color: #11111b;            
+      }
+
       #workspaces button.focused {
         background-color: #313244;
         color: #cdd6f4;
       }
 
-      #window {
-        margin-left: 6px;
-      }
-
-      #clock, #network, #memory, #cpu {
-        margin-right: 6px;
-      }
+      #window { margin-right: 0px; }
+      
+      /* Alertas visuales */
+      #battery.warning { color: #f9e2af; }
+      #battery.critical { color: #f38ba8; }
+      #temperature.critical { color: #f38ba8; }
+      #pulseaudio.muted { color: #a6adc8; }
     '';
   };
 
