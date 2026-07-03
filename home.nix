@@ -19,7 +19,7 @@
     config = {
       modifier = "Mod1";
       terminal = "kitty";
-      menu = "wofi";
+      menu = "fuzzel";
       gaps = {
         inner = 8;
         outer = 4;
@@ -184,8 +184,11 @@
     htop
     fastfetch
     kitty
-    wofi
+    fuzzel
     libnotify
+    firefox
+    brave
+    pavucontrol
   ];
 
   # ==========================================
@@ -223,6 +226,39 @@
       inside-color = "#1e1e2e80";
       inside-clear-color = "#1e1e2e80";
       ring-clear-color = "#f38ba8";
+    };
+  };
+
+
+  # ==========================================
+  # LANZADOR ULTRA-MINIMALISTA (FUZZEL)
+  # ==========================================
+  programs.fuzzel = {
+    enable = true;
+    settings = {
+      main = {
+        font = "Inter:size=11";
+        terminal = "kitty";
+        prompt = "❯   ";
+        width = 40;
+        lines = 10;
+        inner-pad = 8;
+        horizontal-pad = 12;
+        vertical-pad = 8;
+        image-size-ratio = 0; # Desactiva íconos para un look más limpio y rápido
+      };
+      colors = {
+        background = "1e1e2eff"; # Fondo plomito oscuro
+        text = "cdd6f4ff";       # Texto claro
+        match = "89b4faff";      # Coincidencias en azul moderno
+        selection = "313244ff";  # Elemento seleccionado
+        selection-text = "cdd6f4ff";
+        border = "89b4faff";     # Borde azul fino
+      };
+      border = {
+        width = 1;
+        radius = 8; # Bordes redondeados idénticos a Waybar y Mako
+      };
     };
   };
 }
