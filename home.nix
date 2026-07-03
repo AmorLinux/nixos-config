@@ -42,6 +42,12 @@
       bars = [
         { command = "${pkgs.waybar}/bin/waybar"; }
       ];
+      
+      startup = [
+        { command = "pkill waybar; waybar"; always = true; }
+        { command = "pkill nm-applet; nm-applet --indicator"; always = true; }
+      ];
+
     };
   };
 
@@ -189,6 +195,7 @@
     firefox
     brave
     pavucontrol
+    networkmanagerapplet
   ];
 
   # ==========================================

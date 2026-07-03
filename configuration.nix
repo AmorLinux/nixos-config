@@ -17,7 +17,7 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -25,7 +25,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  #  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Guayaquil";
@@ -132,6 +132,18 @@
 
   # Evita que los mensajes de log del sistema ensucien la pantalla de login de tuigreet
   boot.consoleLogLevel = 3;
+
+  # ==========================================
+  # CONFIGURACIÓN DE RED (NetworkManager + iwd)
+  # ==========================================
+  networking.hostName = "nixos-laptop"; # El nombre de tu equipo en la red
+  
+  networking.networkmanager = {
+    enable = true;
+    wifi.backend = "iwd";
+  };
+
+  networking.wireless.iwd.enable = true;
 
 }
 
