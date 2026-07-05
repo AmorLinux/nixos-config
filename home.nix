@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.username = "amoreira";
@@ -18,7 +18,7 @@
     '';
     config = {
       modifier = "Mod1";
-      terminal = "kitty";
+      terminal = "footclient";
       menu = "fuzzel";
       gaps = {
         inner = 8;
@@ -35,7 +35,10 @@
       
       # ¡AQUÍ ESTÁ EL FONDO PLOMITO!
       output = {
-        "*" = { bg = "#1e1e2e solid_color"; };
+        "*" = { 
+          bg = "#1e1e2e solid_color";
+          resolution = "1920x1080";
+         };
       };
       
       # ENGANCHAMOS WAYBAR DE FORMA NATIVA Y SEGURA
@@ -44,10 +47,14 @@
       ];
       
       startup = [
-        { command = "pkill waybar; waybar"; always = true; }
         { command = "pkill nm-applet; nm-applet --indicator"; always = true; }
       ];
 
+      # EVITAMOS EL SPAM DE ADVERTENCIAS AL SALIR
+      keybindings = lib.mkOptionDefault {
+        "Mod1+Shift+e" = "exec sh -c 'pkill swaynag; swaynag -t warning -m \"¿Realmente deseas salir de la sesión?\" -B \"Sí, salir\" \"swaymsg exit\"'";
+        "Mod1+Shift+Return" = "exec kitty";
+      };
     };
   };
 
@@ -190,6 +197,7 @@
     htop
     fastfetch
     kitty
+    foot
     fuzzel
     libnotify
     firefox
@@ -252,7 +260,7 @@
         inner-pad = 8;
         horizontal-pad = 12;
         vertical-pad = 8;
-        image-size-ratio = 0; # Desactiva íconos para un look más limpio y rápido
+        # image-size-ratio = 0; # Desactiva íconos para un look más limpio y rápido
       };
       colors = {
         background = "1e1e2eff"; # Fondo plomito oscuro
