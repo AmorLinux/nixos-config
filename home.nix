@@ -18,11 +18,11 @@
     '';
     config = {
       modifier = "Mod1";
-      terminal = "footclient";
+      terminal = "foot";
       menu = "fuzzel";
       gaps = {
-        inner = 8;
-        outer = 4;
+        inner = 4;
+        outer = 0;
       };
       window = {
         border = 1;
@@ -54,6 +54,7 @@
       keybindings = lib.mkOptionDefault {
         "Mod1+Shift+e" = "exec sh -c 'pkill swaynag; swaynag -t warning -m \"¿Realmente deseas salir de la sesión?\" -B \"Sí, salir\" \"swaymsg exit\"'";
         "Mod1+Shift+Return" = "exec kitty";
+        "Mod1+Shift+Escape" = "exec pkill swaynag";
       };
     };
   };
@@ -204,6 +205,10 @@
     brave
     pavucontrol
     networkmanagerapplet
+    # Gestor de archivos
+    xfce.thunar
+    xfce.thunar-volman       # Para gestionar volúmenes extraíbles
+    xfce.thunar-archive-plugin # Para extraer archivos ZIP/TAR con clic derecho
   ];
 
   # ==========================================
@@ -276,4 +281,33 @@
       };
     };
   };
+
+  # ==========================================
+  # TERMINAL PRINCIPAL (FOOT)
+  # ==========================================
+  programs.foot = {
+    enable = true;
+    settings = {
+      main = {
+        # Aquí controlas el tamaño (13 o 14 suele ser muy cómodo)
+        font = "monospace:size=13"; 
+      };
+      "colors-dark" = {
+        # Los mismos colores modernos que tienes en el resto del sistema
+        background = "141414";
+        foreground = "cdd6f4";
+        # Opcional: Puedes descomentar la siguiente línea si quieres un poco de transparencia
+        # alpha = 0.9;
+      };
+    };
+  };
+
+  # ==========================================
+  # CARPETAS DE USUARIO ESTÁNDAR
+  # ==========================================
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
+
 }
