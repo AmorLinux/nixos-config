@@ -206,9 +206,9 @@
     pavucontrol
     networkmanagerapplet
     # Gestor de archivos
-    xfce.thunar
-    xfce.thunar-volman       # Para gestionar volúmenes extraíbles
-    xfce.thunar-archive-plugin # Para extraer archivos ZIP/TAR con clic derecho
+    #  xfce.thunar
+    # xfce.thunar-volman       # Para gestionar volúmenes extraíbles
+    # xfce.thunar-archive-plugin # Para extraer archivos ZIP/TAR con clic derecho
   ];
 
   # ==========================================

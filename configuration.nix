@@ -145,6 +145,18 @@
 
   networking.wireless.iwd.enable = true;
 
+  # ==========================================
+  # GESTOR DE ARCHIVOS (THUNAR)
+  # ==========================================
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+  };
+
+
 }
 
 
