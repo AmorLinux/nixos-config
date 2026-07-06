@@ -265,8 +265,9 @@
     enable = true;
     settings = {
       main = {
-        font = "Inter:size=11";
-        terminal = "kitty";
+        font = "Inter:size=14";
+        terminal = "foot";
+        icon-theme = "Papirus-Dark"; # <--- ¡AQUÍ ESTÁ LA MAGIA!
         prompt = "❯   ";
         width = 40;
         lines = 10;
