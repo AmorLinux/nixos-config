@@ -77,7 +77,8 @@
         modules-center = [ "clock" ];
         # Agregamos todos los sensores solicitados
         modules-right = [ 
-          "pulseaudio" 
+          "pulseaudio"
+          "tray" 
           "pulseaudio#microphone" 
           "network" 
           "sway/language" 
@@ -113,6 +114,9 @@
           format-wifi = "  {essid}";
           format-ethernet = "  LAN";
           format-disconnected = "  Off";
+        };
+        "tray" = {
+          spacing = 10;
         };
         "sway/language" = {
           format = "  {}";
@@ -213,6 +217,7 @@
     font-awesome         # Para los íconos de la Waybar
     papirus-icon-theme   # Para los íconos de las carpetas y apps
     xfce.mousepad
+    blueman
     # Gestor de archivos
     #  xfce.thunar
     # xfce.thunar-volman       # Para gestionar volúmenes extraíbles
