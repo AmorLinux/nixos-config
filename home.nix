@@ -48,6 +48,7 @@
       
       startup = [
         { command = "pkill nm-applet; nm-applet --indicator"; always = true; }
+        { command = "swaymsg workspace 1"; always = false; } # <--- Te envía al escritorio 1 al iniciar sesión
       ];
 
       # EVITAMOS EL SPAM DE ADVERTENCIAS AL SALIR
@@ -55,6 +56,8 @@
         "Mod1+Shift+e" = "exec sh -c 'pkill swaynag; swaynag -t warning -m \"¿Realmente deseas salir de la sesión?\" -B \"Sí, salir\" \"swaymsg exit\"'";
         "Mod1+Shift+Return" = "exec kitty";
         "Mod1+Shift+Escape" = "exec pkill swaynag";
+        "Mod1+g" = "exec brave";    # <--- Alt + G para Brave (puedes cambiarlo a firefox si prefieres)
+        "Mod1+e" = "exec thunar";   # <--- Alt + E para el Gestor de Archivos
       };
     };
   };
