@@ -124,7 +124,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --remember --cmd sway";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --remember --cmd sway";
         user = "greeter";
       };
     };
@@ -150,13 +150,19 @@
   # ==========================================
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [
+    plugins = with pkgs; [
       thunar-archive-plugin
       thunar-volman
     ];
   };
 
-
+  # ==========================================
+  # GESTIÓN DE ARCHIVOS Y DISCOS
+  # ==========================================
+  services.gvfs.enable = true; 
+  services.tumbler.enable = true; 
+  services.udisks2.enable = true; # Soporte para leer USBs
+  programs.dconf.enable = true;   # El puente que conecta la Papelera con Thunar
 }
 
 

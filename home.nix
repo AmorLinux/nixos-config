@@ -219,13 +219,15 @@
   # ==========================================
   services.mako = {
     enable = true;
-    font = "Inter 11";
-    backgroundColor = "#1e1e2eE6"; # Fondo oscuro translúcido
-    textColor = "#cdd6f4";
-    borderColor = "#89b4fa"; # Borde azul moderno
-    borderRadius = 8;
-    borderSize = 2;
-    defaultTimeout = 5000; # Las notificaciones desaparecen en 5 segundos
+    settings = {
+      font = "Inter 11";
+      background-color = "#1e1e2eE6";
+      text-color = "#cdd6f4";
+      border-color = "#89b4fa";
+      border-radius = 8;
+      border-size = 2;
+      default-timeout = 5000;
+    };
   };
 
   # ==========================================
@@ -311,6 +313,8 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    # Silencia la advertencia de Home Manager
+    setSessionVariables = true;
   };
 
 }
