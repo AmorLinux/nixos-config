@@ -48,6 +48,7 @@
       
       startup = [
         { command = "pkill nm-applet; nm-applet --indicator"; always = true; }
+        { command = "pkill blueman-applet; blueman-applet"; always = true; } # <--- Ícono de Bluetooth
         { command = "swaymsg workspace 1"; always = false; } # <--- Te envía al escritorio 1 al iniciar sesión
       ];
 
@@ -211,6 +212,7 @@
     # Paquetes visuales
     font-awesome         # Para los íconos de la Waybar
     papirus-icon-theme   # Para los íconos de las carpetas y apps
+    xfce.mousepad
     # Gestor de archivos
     #  xfce.thunar
     # xfce.thunar-volman       # Para gestionar volúmenes extraíbles
@@ -341,6 +343,30 @@
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };
+  };
+
+  # ==========================================
+  # GESTOR DE ENERGÍA Y BLOQUEO DE PANTALLA
+  # ==========================================
+  services.swayidle = {
+    enable = true;
+    events = [
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock}/bin/swaylock";
+      }
+    ];
+    timeouts = [
+      {
+        timeout = 300; # 5 minutos
+        command = "${pkgs.swaylock}/bin/swaylock";
+      }
+      {
+        timeout = 600; # 10 minutos
+        command = "swaymsg 'output * dpms off'";
+        resumeCommand = "swaymsg 'output * dpms on'";
+      }
+    ];
   };
 
 }

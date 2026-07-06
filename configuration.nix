@@ -163,6 +163,19 @@
   services.tumbler.enable = true; 
   services.udisks2.enable = true; # Soporte para leer USBs
   programs.dconf.enable = true;   # El puente que conecta la Papelera con Thunar
+
+  # ==========================================
+  # ENERGÍA Y BLUETOOTH
+  # ==========================================
+  # Gestor de perfiles de energía (Ahorro / Equilibrado / Rendimiento)
+  services.power-profiles-daemon.enable = true;
+
+  # Soporte de Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true; # Gestor gráfico de Bluetooth
+
+
 }
 
 
