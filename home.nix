@@ -98,43 +98,43 @@
           tooltip-format = "<tt>{calendar}</tt>";
         };
         "pulseaudio" = {
-          format = "{volume}% VOL";
-          format-muted = "MUTE";
+          format = "  {volume}%";
+          format-muted = "  MUTE";
           on-click = "pavucontrol"; 
         };
         "pulseaudio#microphone" = {
           format = "{format_source}";
-          format-source = "{volume}% MIC";
-          format-source-muted = "MIC OFF";
-          on-click = "pavucontrol -t 4"; # Abre la pestaña de entrada en pavucontrol
+          format-source = "  {volume}%";
+          format-source-muted = "  MIC OFF";
+          on-click = "pavucontrol -t 4"; 
         };
         "network" = {
-          format-wifi = "{essid} WiFi";
-          format-ethernet = "LAN";
-          format-disconnected = "Desconectado";
+          format-wifi = "  {essid}";
+          format-ethernet = "  LAN";
+          format-disconnected = "  Off";
         };
         "sway/language" = {
-          format = "TECL: {}";
+          format = "  {}";
         };
         "backlight" = {
-          format = "{percent}% LUZ";
+          format = "  {percent}%";
         };
         "cpu" = {
-          format = "{usage}% CPU";
+          format = "  {usage}%";
         };
         "memory" = {
-          format = "{}% RAM";
+          format = "  {}%";
         };
         "temperature" = {
-          format = "{temperatureC}°C";
+          format = "  {temperatureC}°C";
         };
         "power-profiles-daemon" = {
           format = "{profile}";
           tooltip-format = "Perfil de energía: {profile}";
         };
         "battery" = {
-          format = "{capacity}% BAT";
-          format-charging = "{capacity}% CHG";
+          format = "  {capacity}%";
+          format-charging = "  {capacity}%";
           states = { warning = 30; critical = 15; };
         };
       };
@@ -142,7 +142,7 @@
 
     style = ''
       * {
-        font-family: "Inter", "Roboto", sans-serif;
+        font-family: "Inter", "Roboto", "Font Awesome 6 Free", sans-serif;
         font-size: 13px;
         font-weight: 600;
         border: none;
@@ -208,6 +208,9 @@
     brave
     pavucontrol
     networkmanagerapplet
+    # Paquetes visuales
+    font-awesome         # Para los íconos de la Waybar
+    papirus-icon-theme   # Para los íconos de las carpetas y apps
     # Gestor de archivos
     #  xfce.thunar
     # xfce.thunar-volman       # Para gestionar volúmenes extraíbles
@@ -315,6 +318,28 @@
     createDirectories = true;
     # Silencia la advertencia de Home Manager
     setSessionVariables = true;
+  };
+
+  # ==========================================
+  # TEMAS VISUALES (MODO OSCURO E ÍCONOS)
+  # ==========================================
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+  };
+
+  # Forzamos las preferencias oscuras en el puente D-Bus
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
   };
 
 }
