@@ -55,7 +55,7 @@
   users.users."amoreira" = {
     isNormalUser = true;
     description = "Ariel Moreira";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [];
   };
 
@@ -174,7 +174,12 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true; # Gestor gráfico de Bluetooth
-
+ 
+  # ==========================================
+  # INFRAESTRUCTURA DE DESARROLLO Y REDES
+  # ==========================================
+  virtualisation.docker.enable = true;
+  services.tailscale.enable = true;
 
 }
 

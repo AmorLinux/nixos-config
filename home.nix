@@ -218,6 +218,11 @@
     papirus-icon-theme   # Para los íconos de las carpetas y apps
     xfce.mousepad
     blueman
+    # DESARROLLO E INGENIERÍA
+    vscode
+    jetbrains.idea-community # Cambiar a idea-ultimate si tienes licencia
+    android-studio
+    unityhub
     # Gestor de archivos
     #  xfce.thunar
     # xfce.thunar-volman       # Para gestionar volúmenes extraíbles
