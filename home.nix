@@ -220,7 +220,7 @@
     blueman
     # DESARROLLO E INGENIERÍA
     vscode
-    jetbrains.idea-community # Cambiar a idea-ultimate si tienes licencia
+    jetbrains.idea-oss # Cambiar a idea-ultimate si tienes licencia
     android-studio
     unityhub
     # Gestor de archivos
@@ -346,6 +346,7 @@
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
+    gtk4.theme = null; # <--- Añade esta línea para matar la advertencia
   };
 
   # Forzamos las preferencias oscuras en el puente D-Bus
