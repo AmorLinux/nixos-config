@@ -273,6 +273,10 @@
       inside-color = "1e1e2e80";
       inside-clear-color = "1e1e2e80";
       ring-clear-color = "f38ba8";
+      # Forzar el texto claro en todos los estados
+      text-clear-color = "cdd6f4";
+      text-ver-color = "cdd6f4";
+      text-wrong-color = "cdd6f4";
     };
   };
 
