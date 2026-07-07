@@ -78,8 +78,7 @@
         modules-center = [ "clock" ];
         # Agregamos todos los sensores solicitados
         modules-right = [ 
-          "pulseaudio"
-          "tray" 
+          "pulseaudio" 
           "pulseaudio#microphone" 
           # "network" 
           "sway/language" 
@@ -89,6 +88,7 @@
           "temperature" 
           "power-profiles-daemon" 
           "battery" 
+          "tray"
         ];
 
         # --- Configuración de los módulos ---
