@@ -226,6 +226,8 @@
     unityhub
     seahorse # <--- Interfaz gráfica para GNOME Keyring
     polkit_gnome # <--- El agente que dibuja la ventana de contraseñas de administrador
+    discord
+    zoom-us
     # Gestor de archivos
     #  xfce.thunar
     # xfce.thunar-volman       # Para gestionar volúmenes extraíbles
