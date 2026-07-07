@@ -49,6 +49,7 @@
       startup = [
         { command = "pkill nm-applet; nm-applet --indicator"; always = true; }
         { command = "pkill blueman-applet; blueman-applet"; always = true; } # <--- Ícono de Bluetooth
+        { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; always = true; }
         { command = "swaymsg workspace 1"; always = false; } # <--- Te envía al escritorio 1 al iniciar sesión
       ];
 
@@ -224,6 +225,7 @@
     android-studio
     unityhub
     seahorse # <--- Interfaz gráfica para GNOME Keyring
+    polkit_gnome # <--- El agente que dibuja la ventana de contraseñas de administrador
     # Gestor de archivos
     #  xfce.thunar
     # xfce.thunar-volman       # Para gestionar volúmenes extraíbles
