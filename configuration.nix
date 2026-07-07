@@ -181,6 +181,13 @@
   virtualisation.docker.enable = true;
   services.tailscale.enable = true;
 
+  # ==========================================
+  # GESTOR DE CONTRASEÑAS (SECRET SERVICE)
+  # ==========================================
+  services.gnome.gnome-keyring.enable = true;
+  # Desbloquea el baúl automáticamente al iniciar sesión con tuigreet
+  security.pam.services.greetd.enableGnomeKeyring = true;
+
 }
 
 

@@ -223,6 +223,7 @@
     jetbrains.idea-oss # Cambiar a idea-ultimate si tienes licencia
     android-studio
     unityhub
+    seahorse # <--- Interfaz gráfica para GNOME Keyring
     # Gestor de archivos
     #  xfce.thunar
     # xfce.thunar-volman       # Para gestionar volúmenes extraíbles
