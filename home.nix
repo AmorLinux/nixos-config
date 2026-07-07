@@ -105,6 +105,7 @@
           "power-profiles-daemon" 
           "battery" 
           "tray"
+          "custom/power"
         ];
 
         # --- Configuración de los módulos ---
@@ -158,6 +159,11 @@
           format = "  {capacity}%";
           format-charging = "  {capacity}%";
           states = { warning = 30; critical = 15; };
+        };
+        "custom/power" = {
+          format = "";
+          on-click = "wlogout";
+          tooltip = false;
         };
       };
     };
@@ -244,6 +250,7 @@
     polkit_gnome # <--- El agente que dibuja la ventana de contraseñas de administrador
     discord
     zoom-us
+    wlogout # <--- Menú gráfico de energía
 
     # ----------------------------------------
     # UTILIDADES DE WAYLAND Y ESENCIALES
