@@ -265,12 +265,14 @@
       indicator = true;
       indicator-radius = 100;
       indicator-thickness = 7;
-      ring-color = "#89b4fa";   # Anillo azul
-      key-hl-color = "#a6e3a1"; # Resalte verde al presionar teclas
-      text-color = "#cdd6f4";
-      inside-color = "#1e1e2e80";
-      inside-clear-color = "#1e1e2e80";
-      ring-clear-color = "#f38ba8";
+      
+      # Colores SIN el símbolo '#' para evitar la pantalla gris
+      ring-color = "89b4fa";      # Anillo azul
+      key-hl-color = "a6e3a1";    # Resalte verde al presionar teclas
+      text-color = "cdd6f4";
+      inside-color = "1e1e2e80";
+      inside-clear-color = "1e1e2e80";
+      ring-clear-color = "f38ba8";
     };
   };
 
