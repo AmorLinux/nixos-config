@@ -81,7 +81,7 @@
           "pulseaudio"
           "tray" 
           "pulseaudio#microphone" 
-          "network" 
+          # "network" 
           "sway/language" 
           "backlight" 
           "cpu" 
