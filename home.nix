@@ -414,13 +414,13 @@
     events = [
       {
         event = "before-sleep";
-        command = "${pkgs.swaylock}/bin/swaylock";
+        command = "swaylock";
       }
     ];
     timeouts = [
       {
         timeout = 300; # 5 minutos
-        command = "${pkgs.swaylock}/bin/swaylock";
+        command = "swaylock";
       }
       {
         timeout = 600; # 10 minutos
