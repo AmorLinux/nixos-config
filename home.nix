@@ -47,8 +47,11 @@
       ];
       
       startup = [
-        { command = "pkill nm-applet; nm-applet --indicator"; always = true; }
-        { command = "pkill blueman-applet; blueman-applet"; always = true; } # <--- Ícono de Bluetooth
+        # Retrasamos 2 segundos la red y el bluetooth para que Waybar alcance a dibujar la bandeja
+        { command = "sh -c 'sleep 2 && pkill nm-applet; nm-applet --indicator'"; always = true; }
+        { command = "sh -c 'sleep 2 && pkill blueman-applet; blueman-applet'"; always = true; }
+
+        # El agente de seguridad y el espacio de trabajo no necesitan retraso
         { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; always = true; }
         { command = "swaymsg workspace 1"; always = false; } # <--- Te envía al escritorio 1 al iniciar sesión
       ];
