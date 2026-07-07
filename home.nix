@@ -60,6 +60,22 @@
         "Mod1+Shift+Escape" = "exec pkill swaynag";
         "Mod1+g" = "exec brave";    # <--- Alt + G para Brave (puedes cambiarlo a firefox si prefieres)
         "Mod1+e" = "exec thunar";   # <--- Alt + E para el Gestor de Archivos
+       
+        # ==========================================
+        # CAPTURAS DE PANTALLA (Estilo Fedora)
+        # ==========================================
+        # Pantalla completa al portapapeles
+        "Print" = "exec grim - | wl-copy";
+        
+        # Región seleccionada al portapapeles y guarda archivo
+        "Shift+Print" = "exec sh -c 'grim -g \"$(slurp)\" - | tee \"$HOME/Imágenes/captura-$(date +%Y%m%d-%H%M%S).png\" | wl-copy'";
+        
+        # Guardar archivo con Alt + Print y al portapapeles
+        "Mod1+Print" = "exec sh -c 'grim - | tee \"$HOME/Imágenes/captura-$(date +%Y%m%d-%H%M%S).png\" | wl-copy'";
+        
+        # Teclas multimedia para el brillo
+        "XF86MonBrightnessUp" = "exec brightnessctl set +5%";
+        "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
       };
     };
   };
@@ -228,6 +244,19 @@
     polkit_gnome # <--- El agente que dibuja la ventana de contraseñas de administrador
     discord
     zoom-us
+
+    # ----------------------------------------
+    # UTILIDADES DE WAYLAND Y ESENCIALES
+    # ----------------------------------------
+    wl-clipboard    # Soporte para copiar/pegar
+    grim            # Motor de captura de pantalla
+    slurp           # Selector de región para la captura
+    brightnessctl   # Control de brillo de la pantalla
+    
+    # ----------------------------------------
+    # ESCRITORIO REMOTO
+    # ----------------------------------------
+    moonlight-qt    # Cliente de Moonlight
     # Gestor de archivos
     #  xfce.thunar
     # xfce.thunar-volman       # Para gestionar volúmenes extraíbles
@@ -340,6 +369,16 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+
+    desktop = "/home/amoreira/Escritorio";
+    documents = "/home/amoreira/Documentos";
+    download = "/home/amoreira/Descargas";
+    music = "/home/amoreira/Música";
+    pictures = "/home/amoreira/Imágenes";
+    publicShare = "/home/amoreira/Público";
+    templates = "/home/amoreira/Plantillas";
+    videos = "/home/amoreira/Vídeos"; 
+
     # Silencia la advertencia de Home Manager
     setSessionVariables = true;
   };
