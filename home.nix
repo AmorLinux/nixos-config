@@ -287,7 +287,7 @@
     # ----------------------------------------
     arduino           # Arduino IDE
     rstudio           # R Studio
-    # ciscoPacketTracer9 # Cisco Packet Tracer
+    ciscoPacketTracer9 # Cisco Packet Tracer
     weka              # Machine Learning (Java)
     
     # ----------------------------------------
@@ -477,15 +477,13 @@
   # ==========================================
   programs.git = {
     enable = true;
-    extraConfig = {
-      credential.helper = "${
-        pkgs.git.override { withLibsecret = true; }
-      }/bin/git-credential-libsecret";
-    };
     settings = {
       user = {
         name = "Ariel Moreira";
-        email = "ariel-gmm39@hotmail.com";
+        email = "tu_correo@ejemplo.com"; # <--- Asegúrate de poner tu correo real aquí
+      };
+      credential = {
+        helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
       };
     };
   };
