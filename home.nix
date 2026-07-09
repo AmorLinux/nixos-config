@@ -242,7 +242,7 @@
     # Paquetes visuales
     font-awesome         # Para los íconos de la Waybar
     papirus-icon-theme   # Para los íconos de las carpetas y apps
-    xfce.mousepad
+    mousepad
     blueman
     # DESARROLLO E INGENIERÍA
     vscode
@@ -277,7 +277,7 @@
     # ----------------------------------------
     jdk             # Java
     python3         # Python
-    nodejs_20       # Node.js (LTS)
+    nodejs          # Node.js (estable)
     cargo rustc     # Rust (Compilador y gestor de paquetes)
     gcc             # C y C++
     dotnet-sdk      # C# y .NET
