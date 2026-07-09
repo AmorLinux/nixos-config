@@ -271,6 +271,41 @@
     #  xfce.thunar
     # xfce.thunar-volman       # Para gestionar volúmenes extraíbles
     # xfce.thunar-archive-plugin # Para extraer archivos ZIP/TAR con clic derecho
+
+    # ----------------------------------------
+    # LENGUAJES DE PROGRAMACIÓN
+    # ----------------------------------------
+    jdk             # Java
+    python3         # Python
+    nodejs_20       # Node.js (LTS)
+    cargo rustc     # Rust (Compilador y gestor de paquetes)
+    gcc             # C y C++
+    dotnet-sdk      # C# y .NET
+    
+    # ----------------------------------------
+    # HERRAMIENTAS DE INGENIERÍA Y CLASES
+    # ----------------------------------------
+    arduino           # Arduino IDE
+    rstudio           # R Studio
+    ciscoPacketTracer8 # Cisco Packet Tracer
+    weka              # Machine Learning (Java)
+    
+    # ----------------------------------------
+    # UTILIDADES DE SISTEMA Y RED
+    # ----------------------------------------
+    gparted         # Gestor de particiones y discos
+    ventoy          # Creador de USBs booteables
+    qbittorrent     # Cliente Torrent
+    
+    # ----------------------------------------
+    # MULTIMEDIA Y OFIMÁTICA
+    # ----------------------------------------
+    libreoffice-qt  # Suite ofimática (Versión moderna)
+    zathura         # Visor de PDF ultra minimalista (ideal para Sway)
+    mpv             # Reproductor de video ligero
+    loupe           # Visor de imágenes moderno
+    qalculate-gtk   # Calculadora avanzada
+
   ];
 
   # ==========================================
@@ -438,6 +473,20 @@
         resumeCommand = "swaymsg 'output * dpms on'";
       }
     ];
+  };
+
+  # ==========================================
+  # CONFIGURACIÓN DE GIT
+  # ==========================================
+  programs.git = {
+    enable = true;
+    userName = "Ariel Moreira";
+    userEmail = "tu_correo@ejemplo.com"; # <--- Recuerda poner tu correo de GitHub aquí
+    extraConfig = {
+      credential.helper = "${
+        pkgs.git.override { withLibsecret = true; }
+      }/bin/git-credential-libsecret";
+    };
   };
 
 }
