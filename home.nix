@@ -480,7 +480,7 @@
     settings = {
       user = {
         name = "Ariel Moreira";
-        email = "tu_correo@ejemplo.com"; # <--- Asegúrate de poner tu correo real aquí
+        email = "ariel-gmm39@hotmail.com";
       };
       credential = {
         helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
