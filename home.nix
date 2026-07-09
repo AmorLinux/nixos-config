@@ -287,7 +287,7 @@
     # ----------------------------------------
     arduino           # Arduino IDE
     rstudio           # R Studio
-    ciscoPacketTracer8 # Cisco Packet Tracer
+    ciscoPacketTracer9 # Cisco Packet Tracer
     weka              # Machine Learning (Java)
     
     # ----------------------------------------
