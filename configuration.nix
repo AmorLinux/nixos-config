@@ -62,6 +62,11 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Permitir paquetes marcados como inseguros (Ventoy)
+  nixpkgs.config.permittedInsecurePackages = [
+    "ventoy-1.1.12"
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
