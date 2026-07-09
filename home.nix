@@ -287,7 +287,7 @@
     # ----------------------------------------
     arduino           # Arduino IDE
     rstudio           # R Studio
-    ciscoPacketTracer9 # Cisco Packet Tracer
+    # ciscoPacketTracer9 # Cisco Packet Tracer
     weka              # Machine Learning (Java)
     
     # ----------------------------------------
@@ -456,19 +456,16 @@
   # ==========================================
   services.swayidle = {
     enable = true;
-    events = [
-      {
-        event = "before-sleep";
-        command = "swaylock";
-      }
-    ];
+    events = {
+      before-sleep = "swaylock";
+    };
     timeouts = [
       {
-        timeout = 300; # 5 minutos
+        timeout = 300;
         command = "swaylock";
       }
       {
-        timeout = 600; # 10 minutos
+        timeout = 600;
         command = "swaymsg 'output * dpms off'";
         resumeCommand = "swaymsg 'output * dpms on'";
       }
@@ -480,13 +477,16 @@
   # ==========================================
   programs.git = {
     enable = true;
-    userName = "Ariel Moreira";
-    userEmail = "tu_correo@ejemplo.com"; # <--- Recuerda poner tu correo de GitHub aquí
     extraConfig = {
       credential.helper = "${
         pkgs.git.override { withLibsecret = true; }
       }/bin/git-credential-libsecret";
     };
+    settings = {
+      user = {
+        name = "Ariel Moreira";
+        email = "ariel-gmm39@hotmail.com";
+      };
+    };
   };
-
 }
