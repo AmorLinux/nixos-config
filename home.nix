@@ -310,6 +310,10 @@
     auto-cpufreq
     parsec-bin
 
+    # Íconos base del sistema para solucionar íconos faltantes en Fuzzel
+    hicolor-icon-theme
+    adwaita-icon-theme
+
   ];
 
   # ==========================================
@@ -506,6 +510,22 @@
       credential = {
         helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
       };
+    };
+  };
+
+  # ==========================================
+  # ASOCIACIONES DE ARCHIVOS PREDETERMINADAS
+  # ==========================================
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "image/jpeg" = "imv.desktop";
+      "image/png"  = "imv.desktop";
+      "image/gif"  = "imv.desktop";
+      "image/webp" = "imv.desktop";
+      "image/bmp"  = "imv.desktop";
+      "image/tiff" = "imv.desktop";
+      "image/svg+xml" = "imv.desktop";
     };
   };
 }
