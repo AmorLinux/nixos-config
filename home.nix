@@ -303,7 +303,7 @@
     libreoffice-qt  # Suite ofimática (Versión moderna)
     zathura         # Visor de PDF ultra minimalista (ideal para Sway)
     mpv             # Reproductor de video ligero
-    loupe           # Visor de imágenes moderno
+    imv           # Visor de imágenes
     qalculate-gtk   # Calculadora avanzada
 
     # Herramientas esenciales post-auditoría
