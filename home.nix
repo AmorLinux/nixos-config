@@ -306,6 +306,10 @@
     loupe           # Visor de imágenes moderno
     qalculate-gtk   # Calculadora avanzada
 
+    # Herramientas esenciales post-auditoría
+    auto-cpufreq
+    parsec-bin
+
   ];
 
   # ==========================================
