@@ -253,7 +253,7 @@
     polkit_gnome # <--- El agente que dibuja la ventana de contraseñas de administrador
     discord
     zoom-us
-    wlogout # <--- Menú gráfico de energía
+    # wlogout # <--- Menú gráfico de energía
 
     # ----------------------------------------
     # UTILIDADES DE WAYLAND Y ESENCIALES
@@ -391,6 +391,23 @@
       };
     };
   };
+
+  # ==========================================
+  # MENÚ DE ENERGÍA (WLOGOUT TRADUCIDO)
+  # ==========================================
+  programs.wlogout = {
+    enable = true;
+    layout = [
+      { label = "lock"; action = "swaylock"; text = "Bloquear"; keybind = "l"; }
+      { label = "logout"; action = "swaymsg exit"; text = "Cerrar Sesión"; keybind = "e"; }
+      { label = "suspend"; action = "systemctl suspend"; text = "Suspender"; keybind = "u"; }
+      { label = "hibernate"; action = "systemctl hibernate"; text = "Hibernar"; keybind = "h"; }
+      { label = "shutdown"; action = "systemctl poweroff"; text = "Apagar"; keybind = "s"; }
+      { label = "reboot"; action = "systemctl reboot"; text = "Reiniciar"; keybind = "r"; }
+    ];
+  };
+
+
 
   # ==========================================
   # TERMINAL PRINCIPAL (FOOT)
