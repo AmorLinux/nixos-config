@@ -301,7 +301,7 @@
     # MULTIMEDIA Y OFIMÁTICA
     # ----------------------------------------
     libreoffice-qt  # Suite ofimática (Versión moderna)
-    zathura         # Visor de PDF ultra minimalista (ideal para Sway)
+    # zathura         # Visor de PDF ultra minimalista (ideal para Sway)
     mpv             # Reproductor de video ligero
     imv           # Visor de imágenes
     qalculate-gtk   # Calculadora avanzada
@@ -526,6 +526,16 @@
       "image/bmp"  = "imv.desktop";
       "image/tiff" = "imv.desktop";
       "image/svg+xml" = "imv.desktop";
+    };
+  };
+
+  # ==========================================
+  # VISOR DE PDF (ZATHURA)
+  # ==========================================
+  programs.zathura = {
+    enable = true;
+    options = {
+      selection-clipboard = "clipboard"; # Fuerza el uso del portapapeles estándar
     };
   };
 }
