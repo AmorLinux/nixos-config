@@ -314,6 +314,7 @@
     hicolor-icon-theme
     adwaita-icon-theme
     file
+    imagemagick
 
   ];
 
@@ -547,8 +548,8 @@
     enable = true;
     settings = {
       binds = {
-        # Detecta el tipo MIME real (jpg, png, etc.) y lo pasa al portapapeles
-        "c" = "exec sh -c 'wl-copy -t $(file -b --mime-type \"$imv_current_file\") < \"$imv_current_file\"'";
+        # Convierte cualquier imagen a PNG en memoria y la pasa a wl-copy
+        "c" = "exec magick '$imv_current_file' png:- | wl-copy -t image/png";
       };
     };
   };
