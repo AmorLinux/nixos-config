@@ -313,6 +313,7 @@
     # Íconos base del sistema para solucionar íconos faltantes en Fuzzel
     hicolor-icon-theme
     adwaita-icon-theme
+    file
 
   ];
 
@@ -546,8 +547,8 @@
     enable = true;
     settings = {
       binds = {
-        # Al presionar 'c', wl-copy captura el archivo actual en el portapapeles principal
-        "c" = "exec wl-copy -t image/png < \"$imv_current_file\"";
+        # Detecta el tipo MIME real (jpg, png, etc.) y lo pasa al portapapeles
+        "c" = "exec sh -c 'wl-copy -t $(file -b --mime-type \"$imv_current_file\") < \"$imv_current_file\"'";
       };
     };
   };
