@@ -303,7 +303,7 @@
     libreoffice-qt  # Suite ofimática (Versión moderna)
     # zathura         # Visor de PDF ultra minimalista (ideal para Sway)
     mpv             # Reproductor de video ligero
-    imv           # Visor de imágenes
+    # imv           # Visor de imágenes
     qalculate-gtk   # Calculadora avanzada
 
     # Herramientas esenciales post-auditoría
@@ -536,6 +536,19 @@
     enable = true;
     options = {
       selection-clipboard = "clipboard"; # Fuerza el uso del portapapeles estándar
+    };
+  };
+
+  # ==========================================
+  # VISOR DE IMÁGENES (IMV) Y ATAJOS
+  # ==========================================
+  programs.imv = {
+    enable = true;
+    settings = {
+      binds = {
+        # Al presionar 'c', wl-copy captura el archivo actual en el portapapeles principal
+        "c" = "exec wl-copy < \"$imv_current_file\"";
+      };
     };
   };
 }
