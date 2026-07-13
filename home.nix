@@ -547,8 +547,9 @@
     settings = {
       binds = {
         # Al presionar 'c', wl-copy captura el archivo actual en el portapapeles principal
-        "c" = "exec wl-copy < \"$imv_current_file\"";
+        "c" = "exec wl-copy -t image/png < \"$imv_current_file\"";
       };
     };
   };
+
 }
