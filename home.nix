@@ -549,7 +549,7 @@
     settings = {
       binds = {
         # Convierte cualquier imagen a PNG en memoria y la pasa a wl-copy
-        "c" = "exec magick '$imv_current_file' png:- | wl-copy -t image/png";
+        "c" = "exec magick \"$imv_current_file\" png:- | wl-copy -t image/png";
       };
     };
   };
