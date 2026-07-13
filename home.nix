@@ -71,10 +71,10 @@
         "Print" = "exec grim - | wl-copy";
         
         # Región seleccionada al portapapeles y guarda archivo
-        "Shift+Print" = "exec sh -c 'grim -g \"$(slurp)\" - | tee \"$HOME/Imágenes/captura-$(date +%Y%m%d-%H%M%S).png\" | wl-copy'";
+        "Shift+Print" = "exec sh -c 'mkdir -p \"$HOME/Imágenes/Capturas_de_pantalla\" && grim -g \"$(slurp)\" - | tee \"$HOME/Imágenes/Capturas_de_pantalla/captura-$(date +%Y%m%d-%H%M%S).png\" | wl-copy'";
         
         # Guardar archivo con Alt + Print y al portapapeles
-        "Mod1+Print" = "exec sh -c 'grim - | tee \"$HOME/Imágenes/captura-$(date +%Y%m%d-%H%M%S).png\" | wl-copy'";
+        "Mod1+Print" = "exec sh -c 'mkdir -p \"$HOME/Imágenes/Capturas_de_pantalla\" && grim - | tee \"$HOME/Imágenes/Capturas_de_pantalla/captura-$(date +%Y%m%d-%H%M%S).png\" | wl-copy'";
         
         # Teclas multimedia para el brillo
         "XF86MonBrightnessUp" = "exec brightnessctl set +5%";
