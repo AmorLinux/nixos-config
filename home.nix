@@ -316,6 +316,11 @@
     file
     imagemagick
 
+   # Gestión de pantallas y proyecciones
+    wdisplays             # Interfaz gráfica para configurar monitores
+    kanshi                # Demonio para automatizar perfiles de pantallas
+    gnome-network-displays # Transmisión inalámbrica (Miracast) a Smart TVs
+
   ];
 
   # ==========================================

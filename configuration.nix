@@ -193,6 +193,18 @@
   # Desbloquea el baúl automáticamente al iniciar sesión con tuigreet
   security.pam.services.greetd.enableGnomeKeyring = true;
 
+  # ==========================================
+  # PORTALES DE WAYLAND (Para compartir pantalla)
+  # ==========================================
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr # El traductor oficial para Sway/Wayland
+      xdg-desktop-portal-gtk # Necesario para que aplicaciones de GNOME funcionen bien
+    ];
+    config.common.default = "*";
+  };
+
 }
 
 
