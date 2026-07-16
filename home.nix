@@ -106,7 +106,8 @@
           "memory" 
           "temperature" 
           "power-profiles-daemon" 
-          "battery" 
+          "battery"
+          "wdisplays" 
           "tray"
           "custom/power"
         ];
@@ -155,8 +156,15 @@
           format = "  {temperatureC}°C";
         };
         "power-profiles-daemon" = {
-          format = "{profile}";
-          tooltip-format = "Perfil de energía: {profile}";
+          format = "{icon}";
+          tooltip-format = "Perfil: {profile}";
+          tooltip = true;
+          format-icons = {
+            default = "";
+            performance = "";
+            balanced = "";
+            power-saver = "";
+          };
         };
         "battery" = {
           format = "  {capacity}%";
@@ -166,6 +174,11 @@
         "custom/power" = {
           format = "";
           on-click = "wlogout";
+          tooltip = false;
+        };
+        "custom/displays" = {
+          format = "󰍹";
+          on-click = "wdisplays";
           tooltip = false;
         };
       };
@@ -243,7 +256,7 @@
     font-awesome         # Para los íconos de la Waybar
     papirus-icon-theme   # Para los íconos de las carpetas y apps
     mousepad
-    blueman
+    blueman # <--- ¡Descomentado para que Fuzzel vea los íconos en tu usuario!
     # DESARROLLO E INGENIERÍA
     vscode
     jetbrains.idea-oss # Cambiar a idea-ultimate si tienes licencia
@@ -537,6 +550,28 @@
   };
 
   # ==========================================
+  # CORRECCIÓN DE ÍCONOS REBELDES Y LIMPIEZA
+  # ==========================================
+  xdg.desktopEntries = {
+    # 1. Arreglamos el administrador principal (Ventana Grande)
+    blueman-manager = {
+      name = "Bluetooth Manager";
+      genericName = "Bluetooth Manager";
+      exec = "blueman-manager";
+      icon = "blueman";
+      terminal = false;
+      categories = [ "Settings" "HardwareSettings" ];
+    };
+
+    # 2. Escondemos la herramienta de adaptadores (Ventana Pequeña) para que no salga en Fuzzel
+    blueman-adapters = {
+      name = "Adaptadores Bluetooth";
+      exec = "blueman-adapters";
+      noDisplay = true; # <--- Esto la vuelve invisible en el lanzador
+    };
+  };
+
+  # ==========================================
   # VISOR DE PDF (ZATHURA)
   # ==========================================
   programs.zathura = {
@@ -558,5 +593,4 @@
       };
     };
   };
-
 }
