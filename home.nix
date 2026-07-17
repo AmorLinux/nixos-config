@@ -54,6 +54,7 @@
         # El agente de seguridad y el espacio de trabajo no necesitan retraso
         { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; always = true; }
         { command = "swaymsg workspace 1"; always = false; } # <--- Te envía al escritorio 1 al iniciar sesión
+        { command = "swaybg -i /home/amoreira/Imágenes/fondos_de_pantalla/fondo-2.jpg -m fill"; always = true; }
       ];
 
       # EVITAMOS EL SPAM DE ADVERTENCIAS AL SALIR
@@ -334,6 +335,9 @@
     kanshi                # Demonio para automatizar perfiles de pantallas
     gnome-network-displays # Transmisión inalámbrica (Miracast) a Smart TVs
 
+    swaybg # Motor ligero para fondos de pantalla en Wayland
+
+    dbeaver-bin
   ];
 
   # ==========================================
