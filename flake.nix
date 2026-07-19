@@ -1,5 +1,5 @@
 {
-  description = "Sistema NixOS - Laptop Base";
+  description = "Sistema NixOS - Laptop Base Modular";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -15,13 +15,9 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          # El hardware real de tu VMware actual
           ./hardware-configuration.nix
-          
-          # Tu configuración general del sistema
           ./configuration.nix
           
-          # La integración de Home Manager para tu usuario
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
