@@ -6,7 +6,7 @@
 
   wayland.windowManager.sway = {
     enable = true;
-    extraSessionCommands = "export WLR_NO_HARDWARE_CURSORS=1";
+    extraSessionCommands = "export WLR_RENDERER=pixman\nexport WLR_NO_HARDWARE_CURSORS=1";
     config = {
       modifier = "Mod1"; terminal = "foot"; menu = "fuzzel";
       gaps = { inner = 4; outer = 0; };
