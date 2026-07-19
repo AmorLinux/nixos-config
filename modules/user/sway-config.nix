@@ -39,9 +39,7 @@
 
   services.swayidle = {
     enable = true;
-    events = [
-      { event = "before-sleep"; command = "swaylock"; }
-    ];
+    events = { before-sleep = "swaylock"; };
     timeouts = [ { timeout = 300; command = "swaylock"; } ];
   };
 
