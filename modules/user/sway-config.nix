@@ -12,7 +12,7 @@
       gaps = { inner = 4; outer = 0; };
       window = { border = 1; titlebar = false; };
       fonts = { names = [ "Inter" "Roboto" ]; size = 10.0; };
-      output."*" = { bg = "#1e1e2e solid_color"; resolution = "1920x1080"; };
+      output."*" = { resolution = "1920x1080"; };
       bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
       startup = [
         { command = "sh -c 'sleep 2 && pkill nm-applet; nm-applet --indicator'"; always = true; }
@@ -45,6 +45,12 @@
 
   programs.wlogout = {
     enable = true;
-    layout = [ { label = "lock"; action = "swaylock"; text = "Bloquear"; keybind = "l"; } ];
+    layout = [
+      { label = "lock"; action = "swaylock"; text = "Bloquear"; keybind = "l"; }
+      { label = "logout"; action = "swaymsg exit"; text = "Cerrar sesión"; keybind = "e"; }
+      { label = "reboot"; action = "systemctl reboot"; text = "Reiniciar"; keybind = "r"; }
+      { label = "shutdown"; action = "systemctl poweroff"; text = "Apagar"; keybind = "s"; }
+      { label = "suspend"; action = "systemctl suspend"; text = "Suspender"; keybind = "u"; }
+    ];
   };
 }
