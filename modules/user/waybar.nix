@@ -38,57 +38,57 @@
           tooltip-format = "<tt>{calendar}</tt>";
         };
         "pulseaudio" = {
-          format = "  {volume}%";
-          format-muted = "  MUTE";
+          format = "  {volume}%";
+          format-muted = "  MUTE";
           on-click = "pavucontrol";
         };
         "pulseaudio#microphone" = {
           format = "{format_source}";
-          format-source = "  {volume}%";
-          format-source-muted = "  MIC OFF";
+          format-source = "  {volume}%";
+          format-source-muted = "  MIC OFF";
           on-click = "pavucontrol -t 4";
         };
         "network" = {
-          format-wifi = "  {essid}";
-          format-ethernet = "  LAN";
-          format-disconnected = "  Off";
+          format-wifi = "  {essid}";
+          format-ethernet = "  LAN";
+          format-disconnected = "  Off";
         };
         "tray" = {
           spacing = 10;
         };
         "sway/language" = {
-          format = "  {}";
+          format = "  {}";
         };
         "backlight" = {
-          format = "  {percent}%";
+          format = "  {percent}%";
         };
         "cpu" = {
-          format = "  {usage}%";
+          format = "  {usage}%";
         };
         "memory" = {
-          format = "  {}%";
+          format = "  {}%";
         };
         "temperature" = {
-          format = "  {temperatureC}°C";
+          format = "  {temperatureC}°C";
         };
         "power-profiles-daemon" = {
           format = "{icon}";
           tooltip-format = "Perfil: {profile}";
           tooltip = true;
           format-icons = {
-            default = "";
-            performance = "";
-            balanced = "";
-            power-saver = "";
+            default = "";
+            performance = "";
+            balanced = "";
+            power-saver = "";
           };
         };
         "battery" = {
-          format = "  {capacity}%";
-          format-charging = "  {capacity}%";
+          format = "  {capacity}%";
+          format-charging = "  {capacity}%";
           states = { warning = 30; critical = 15; };
         };
         "custom/power" = {
-          format = "";
+          format = "";
           on-click = "wlogout";
           tooltip = false;
         };
