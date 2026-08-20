@@ -16,12 +16,8 @@
   # ==========================================
   wayland.windowManager.sway = {
     enable = true;
-    extraSessionCommands = ''
-      export WLR_RENDERER=pixman
-      export WLR_NO_HARDWARE_CURSORS=1
-    '';
     config = {
-      modifier = "Mod1";
+      modifier = "Mod4";
       terminal = "foot";
       menu = "fuzzel";
       gaps = {
@@ -37,11 +33,10 @@
         size = 10.0;
       };
 
-      # Fondo plomito por defecto
+      # Fondo plomito por defecto (sin resolución fija: usa la nativa de cada pantalla)
       output = {
         "*" = {
           bg = "#1e1e2e solid_color";
-          resolution = "1920x1080";
         };
       };
 
@@ -58,16 +53,15 @@
         # El agente de seguridad y el espacio de trabajo no necesitan retraso
         { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; always = true; }
         { command = "swaymsg workspace 1"; always = false; }
-        { command = "swaybg -i /home/amoreira/Imágenes/fondos_de_pantalla/fondo-2.jpg -m fill"; always = true; }
       ];
 
       # Evitamos el spam de advertencias al salir
       keybindings = lib.mkOptionDefault {
-        "Mod1+Shift+e" = "exec sh -c 'pkill swaynag; swaynag -t warning -m \"¿Realmente deseas salir de la sesión?\" -B \"Sí, salir\" \"swaymsg exit\"'";
-        "Mod1+Shift+Return" = "exec kitty";
-        "Mod1+Shift+Escape" = "exec pkill swaynag";
-        "Mod1+g" = "exec brave";
-        "Mod1+e" = "exec thunar";
+        "Mod4+Shift+e" = "exec sh -c 'pkill swaynag; swaynag -t warning -m \"¿Realmente deseas salir de la sesión?\" -B \"Sí, salir\" \"swaymsg exit\"'";
+        "Mod4+Shift+Return" = "exec kitty";
+        "Mod4+Shift+Escape" = "exec pkill swaynag";
+        "Mod4+g" = "exec brave";
+        "Mod4+e" = "exec thunar";
 
         # ==========================================
         # CAPTURAS DE PANTALLA (Estilo Fedora)
@@ -78,8 +72,8 @@
         # Región seleccionada al portapapeles y guarda archivo
         "Shift+Print" = "exec sh -c 'mkdir -p \"$HOME/Imágenes/Capturas_de_pantalla\" && grim -g \"$(slurp)\" - | tee \"$HOME/Imágenes/Capturas_de_pantalla/captura-$(date +%Y%m%d-%H%M%S).png\" | wl-copy'";
 
-        # Guardar archivo con Alt + Print y al portapapeles
-        "Mod1+Print" = "exec sh -c 'mkdir -p \"$HOME/Imágenes/Capturas_de_pantalla\" && grim - | tee \"$HOME/Imágenes/Capturas_de_pantalla/captura-$(date +%Y%m%d-%H%M%S).png\" | wl-copy'";
+        # Guardar archivo con Super + Print y al portapapeles
+        "Mod4+Print" = "exec sh -c 'mkdir -p \"$HOME/Imágenes/Capturas_de_pantalla\" && grim - | tee \"$HOME/Imágenes/Capturas_de_pantalla/captura-$(date +%Y%m%d-%H%M%S).png\" | wl-copy'";
 
         # Teclas multimedia para el brillo
         "XF86MonBrightnessUp" = "exec brightnessctl set +5%";

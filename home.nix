@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: {
   home.username = "amoreira";
   home.homeDirectory = "/home/amoreira";
-  home.stateVersion = "24.05";
+  home.stateVersion = "26.05";
   programs.home-manager.enable = true;
 
   imports = [

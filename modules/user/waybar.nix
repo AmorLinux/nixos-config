@@ -23,7 +23,7 @@
           "temperature"
           "power-profiles-daemon"
           "battery"
-          "wdisplays"
+          "custom/displays"
           "tray"
           "custom/power"
         ];
