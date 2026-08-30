@@ -12,6 +12,5 @@
     openFirewall = true;
   };
 
-  networking.wireless.iwd.enable = true;
   services.tailscale.enable = true;
 }

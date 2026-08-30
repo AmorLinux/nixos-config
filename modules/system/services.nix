@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
   time.timeZone = "America/Guayaquil";
-  i18n.defaultLocale = "es_MX.UTF-8";
+  i18n.defaultLocale = "es_EC.UTF-8";
+  i18n.supportedLocales = [ "C.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" "es_EC.UTF-8/UTF-8" ];
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "es_EC.UTF-8"; LC_IDENTIFICATION = "es_EC.UTF-8";
     LC_MEASUREMENT = "es_EC.UTF-8"; LC_MONETARY = "es_EC.UTF-8";

@@ -1,6 +1,6 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [ "ventoy-1.1.12" ];
+  nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "ventoy" ];
   environment.systemPackages = with pkgs; [ wget git nano ];
 
   # Fuentes que usan Sway, Fuzzel y Waybar
