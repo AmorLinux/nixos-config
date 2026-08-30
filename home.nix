@@ -14,8 +14,23 @@
   # (Presentes tanto en Sway como en KDE)
   # ==========================================
   home.packages = with pkgs; [
-    firefox
-    brave
+    # --- NAVEGADOR Y GESTOR DE CONTRASEÑAS ---
+    librewolf
+    bitwarden-desktop
+
+    # --- PRIVACIDAD / SEGURIDAD ---
+    keepassxc
+    signal-desktop
+    element-desktop
+    veracrypt
+    opensnitch-ui
+    tor-browser-bundle-bin
+    bleachbit
+
+    # --- VPN ---
+    proton-vpn
+
+    # --- EXISTENTES ---
     moonlight-qt
     gnome-network-displays
   ];

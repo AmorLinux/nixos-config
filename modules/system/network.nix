@@ -1,5 +1,9 @@
 { config, pkgs, ... }: {
   networking.hostName = "nixos-laptop";
+
+  # DNS Quad9 (bloquea malware/dominios maliciosos, sin registro de IPs)
+  networking.nameservers = [ "9.9.9.9" "149.112.112.112" ];
+
   networking.networkmanager = {
     enable = true;
     wifi.backend = "iwd";

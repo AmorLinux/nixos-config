@@ -23,4 +23,15 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  # --- FIREWALL DE APLICACIONES (control de conexiones salientes) ---
+  services.opensnitch.enable = true;
+
+  # --- VPN ---
+  # El paquete GUI y el daemon deben ser la misma versión
+  # (evita el error "daemon and GUI not synchronized").
+  services.mullvad-vpn = {
+    enable = true;
+    package = pkgs.mullvad-vpn;
+  };
 }
