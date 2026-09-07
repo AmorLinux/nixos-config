@@ -6,6 +6,7 @@
     ./modules/system/services.nix
     ./modules/system/docker.nix
     ./modules/system/virtualization.nix
+    ./modules/system/searx.nix
     
     # --- SELECCIÓN DE ENTORNO DE SISTEMA ---
     ./modules/system/desktop-sway.nix
