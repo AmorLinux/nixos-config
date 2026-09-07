@@ -60,7 +60,7 @@
         "Mod4+Shift+e" = "exec sh -c 'pkill swaynag; swaynag -t warning -m \"¿Realmente deseas salir de la sesión?\" -B \"Sí, salir\" \"swaymsg exit\"'";
         "Mod4+Shift+Return" = "exec kitty";
         "Mod4+Shift+Escape" = "exec pkill swaynag";
-        "Mod4+g" = "exec brave";
+        "Mod4+g" = "exec librewolf";
         "Mod4+e" = "exec thunar";
 
         # ==========================================

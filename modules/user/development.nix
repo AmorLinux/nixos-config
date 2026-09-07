@@ -2,7 +2,8 @@
   home.packages = with pkgs; [
     htop fastfetch python3 nodejs gcc dotnet-sdk
     cargo rustc jdk jetbrains.idea-community android-studio unityhub
-    vscode discord zoom-us qbittorrent dbeaver-bin
+
+    vscodium discord zoom-us qbittorrent dbeaver-bin
 
     # Seguridad y pruebas de APIs
     burpsuite   # Burp Suite Community (testing de apps web)

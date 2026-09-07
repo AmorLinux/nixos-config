@@ -4,9 +4,9 @@
   ];
   gtk = {
     enable = true;
-    theme = { name = "Adwaita-dark"; package = pkgs.gnome-themes-extra; };
+    theme = { name = "adw-gtk3-dark"; package = pkgs.adw-gtk3; };
     iconTheme = { name = "Papirus-Dark"; package = pkgs.papirus-icon-theme; };
-    gtk4.theme = null; # Silencia la advertencia de Home Manager
+    gtk4.theme = { name = "adw-gtk3-dark"; package = pkgs.adw-gtk3; };
   };
   dconf.settings = {
     "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
