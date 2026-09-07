@@ -5,4 +5,10 @@
 
   # Fuentes que usan Sway, Fuzzel y Waybar
   fonts.packages = with pkgs; [ inter roboto ];
+
+  # Análisis de red (complementa Burp Suite); usa el grupo "wireshark"
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
 }

@@ -2,7 +2,7 @@
   users.users."amoreira" = {
     isNormalUser = true;
     description = "Ariel Moreira";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "wireshark" ];
 
     # 🔐 Contraseña provisional para que el repo compile e instale sin editar nada.
     # RECOMENDADO durante la instalación: genera tu hash con
