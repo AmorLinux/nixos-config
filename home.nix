@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, inputs, ... }: {
   home.username = "amoreira";
   home.homeDirectory = "/home/amoreira";
   home.stateVersion = "26.05";
@@ -7,6 +7,8 @@
   imports = [
     ./modules/user/development.nix
     ./modules/user/engineering.nix
+    ./modules/user/firefox.nix
+    ./modules/user/kilo.nix 
   ];
 
   # ==========================================
@@ -15,7 +17,7 @@
   # ==========================================
   home.packages = with pkgs; [
     # --- NAVEGADOR Y GESTOR DE CONTRASEÑAS ---
-    librewolf
+    # firefox
     bitwarden-desktop
 
     # --- PRIVACIDAD / SEGURIDAD ---
@@ -24,7 +26,7 @@
     element-desktop
     veracrypt
     opensnitch-ui
-    tor-browser-bundle-bin
+    tor-browser
     bleachbit
 
     # --- VPN ---
@@ -67,6 +69,11 @@
       credential = {
         helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
       };
+    };
+    
+    # 👇 NUEVO: permite operar en /etc/nixos aunque sea de root
+    extraConfig = {
+      safe.directory = [ "/etc/nixos" ];
     };
   };
 }
