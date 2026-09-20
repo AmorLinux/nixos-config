@@ -160,9 +160,31 @@
         };
       };
 
+        # ==========================================
+        # MOTOR DE BÚSQUEDA
+        # ==========================================
+
+        search = {
+          force = true;
+          default = "SearXNG local";
+
+          engines = {
+            # Web general: instancia pública mantenida (sin CAPTCHAs)
+            "SearXNG" = {
+              urls = [ { template = "https://searx.be/search?q={searchTerms}"; } ];
+              definedAliases = [ "@sx" ];
+            };
+            # Tu instancia local: imágenes, videos, IT, ciencia
+            "SearXNG local" = {
+              urls = [ { template = "http://127.0.0.1:8888/search?q={searchTerms}"; } ];
+              definedAliases = [ "@local" ];
+            };
+          };
+        };
+
       settings = {
-        "browser.startup.homepage" = "about:home";
-        "browser.newtabpage.enabled" = true;
+        "browser.startup.homepage" = "http://127.0.0.1:8888";
+        "browser.newtabpage.enabled" = false;
         "browser.search.region" = "AR";  # cambia a tu país
         "intl.accept_languages" = "es-AR,es,en-US,en";
       };

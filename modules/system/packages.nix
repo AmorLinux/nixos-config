@@ -1,14 +1,25 @@
 { config, pkgs, lib, ... }: {
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "ventoy" ];
-  environment.systemPackages = with pkgs; [ wget git nano ];
+  nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "electron"
+    "ventoy"
+  ];
 
-  # Fuentes que usan Sway, Fuzzel y Waybar
+  # ADB y fastboot con reglas udev (detecta el teléfono sin root)
+  environment.systemPackages = with pkgs; [
+    wget git nano
+    android-tools         # adb y fastboot (instalar APKs)
+    swayidle              # Para bloqueo idle
+    pulseaudio            # Audio backend
+    unrar                 # Descomprimir archivos .rar
+  ];
   fonts.packages = with pkgs; [ inter roboto ];
-
-  # Análisis de red (complementa Burp Suite); usa el grupo "wireshark"
-  programs.wireshark = {
+  programs.wireshark = { enable = true; };
+  programs.nix-ld = {
     enable = true;
-    package = pkgs.wireshark;
+    libraries = with pkgs; [
+      stdenv.cc.cc.lib
+      openssl
+    ];
   };
 }

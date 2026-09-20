@@ -8,7 +8,8 @@
     ./modules/user/development.nix
     ./modules/user/engineering.nix
     ./modules/user/firefox.nix
-    ./modules/user/kilo.nix 
+    ./modules/user/kilo.nix
+    ./modules/user/pi.nix   
   ];
 
   # ==========================================
@@ -62,18 +63,17 @@
   programs.git = {
     enable = true;
     settings = {
+      # 👇 permite operar en /etc/nixos aunque sea de root
+      safe.directory = [ "/etc/nixos" ];
+
       user = {
         name = "Ariel Moreira";
         email = "ariel-gmm39@hotmail.com";
       };
+
       credential = {
         helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
       };
-    };
-    
-    # 👇 NUEVO: permite operar en /etc/nixos aunque sea de root
-    extraConfig = {
-      safe.directory = [ "/etc/nixos" ];
     };
   };
 }

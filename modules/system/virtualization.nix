@@ -7,8 +7,8 @@
     enable = true;
     qemu = {
       swtpm.enable = true;            # TPM emulado (requerido por Windows 11)
-      ovmf.enable = true;             # Firmware UEFI para invitados
-      ovmf.packages = [ pkgs.OVMFFull.fd ];
+#       ovmf.enable = true;             # Firmware UEFI para invitados
+#       ovmf.packages = [ pkgs.OVMFFull.fd ];
     };
   };
 

@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       main = { font = "monospace:size=13"; };
-      colors = { background = "141414"; foreground = "cdd6f4"; };
+      colors-dark = { background = "141414"; foreground = "cdd6f4"; };
     };
   };
 }

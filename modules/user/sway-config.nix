@@ -33,6 +33,15 @@
         size = 10.0;
       };
 
+      # Configuración del touchpad
+      input = {
+        "type:touchpad" = {
+          tap = "enabled";
+          tap_button_map = "lrm";
+          natural_scroll = "enabled";
+        };
+      };
+
       # Fondo plomito por defecto (sin resolución fija: usa la nativa de cada pantalla)
       output = {
         "*" = {
@@ -60,7 +69,7 @@
         "Mod4+Shift+e" = "exec sh -c 'pkill swaynag; swaynag -t warning -m \"¿Realmente deseas salir de la sesión?\" -B \"Sí, salir\" \"swaymsg exit\"'";
         "Mod4+Shift+Return" = "exec kitty";
         "Mod4+Shift+Escape" = "exec pkill swaynag";
-        "Mod4+g" = "exec librewolf";
+        "Mod4+g" = "exec firefox";
         "Mod4+e" = "exec thunar";
 
         # ==========================================
@@ -78,6 +87,10 @@
         # Teclas multimedia para el brillo
         "XF86MonBrightnessUp" = "exec brightnessctl set +5%";
         "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
+        # Teclas multimedia para el volumen (PipeWire)
+        "XF86AudioRaiseVolume" = "exec wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+";
+        "XF86AudioLowerVolume" = "exec wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-";
+        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
       };
     };
   };
@@ -118,6 +131,7 @@
     enable = true;
     events = {
       before-sleep = "swaylock";
+
     };
     timeouts = [
       {
