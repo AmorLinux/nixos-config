@@ -7,39 +7,30 @@ let
   # changelog). Se copia en cada activación con cp/install.
   # ============================================================
   piSettings = pkgs.writeText "pi-settings.json" (builtins.toJSON {
-    defaultProvider = "compat-omniroute";
-    defaultModel = "auto";
+    defaultProvider = "nvidia"; # ← Ajusta a "omniroute" si lo prefieres
+    defaultModel = "auto";      # ← El combo o modelo por defecto
     defaultThinkingLevel = "medium";
-    packages = [ "npm:@billjr99/pi-openai-compat" ];
+    packages = [ "npm:pi-live-models" ]; # ← Extensión de descubrimiento dinámico
   });
 
   # ============================================================
-  # config.json de la extensión @billjr99/pi-openai-compat.
-  # apiKey usa !command para leer la llave de un archivo FUERA de
-  # la config de Nix (nunca hardcodeada). cachedModels = lista
-  # semilla estática (se actualiza pidiendo /compat-refresh).
+  # live-models.json de pi-live-models.
+  # Define los proveedores cuyo catálogo de modelos se descubrirá
+  # dinámicamente. apiKey usa !cat para leer los secretos desde
+  # archivos fuera de la config de Nix (nunca hardcodeados).
   # ============================================================
-  # En pi.nix, dentro del bloque 'let'
-  piCompatConfig = pkgs.writeText "pi-openai-compat-config.json" (builtins.toJSON {
+  piLiveModelsConfig = pkgs.writeText "pi-live-models.json" (builtins.toJSON {
     providers = {
       omniroute = {
-        displayName = "OmniRoute Gateway";
         baseUrl = "http://localhost:20128/v1";
+        api = "openai-completions"; # Protocolo OpenAI-compatible
         apiKey = "!cat /home/amoreira/.secrets/omniroute-key";
-        cachedModels = [ # 👈 La lista de modelos ahora son COMBOS
-          # Combos generales
-          { id = "auto"; }                    # Equilibrado (pero puede usar modelos de pago)
-          { id = "auto/fast"; }               # Prioriza velocidad, no coste
-
-          # Combos específicos para tu necesidad: código gratis
-          { id = "auto/coding:free"; }        # ¡El que buscas! Mejor código gratuito
-          { id = "auto/coding:cheap"; }       # Código con el coste más bajo (si no hay gratis)
-          { id = "auto/coding:fast"; }        # El código más rápido
-
-          # Otros combos útiles para tener a mano
-          { id = "auto/reasoning:free"; }     # El mejor razonamiento gratuito
-          { id = "auto/smart"; }              # Calidad + exploración para descubrir modelos
-        ];
+        # filters = { exclude = [ "*embedding*" ]; }; # Opcional: filtra modelos
+      };
+      nvidia = {
+        baseUrl = "https://integrate.api.nvidia.com/v1";
+        api = "openai-completions";
+        apiKey = "!cat /home/amoreira/.secrets/nvidia-nim-key";
       };
     };
   });
@@ -55,15 +46,14 @@ in
       run install -Dm644 ${piSettings} "$HOME/.pi/agent/settings.json"
     '';
 
-    # ~/.config/pi-openai-compat/config.json — permisos estrictos
-    # Solo escribe si el archivo NO existe, para que /compat-refresh
-    # pueda actualizar el catálogo y persistir entre rebuilds.
-    piCompatConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      if [ ! -f "$HOME/.config/pi-openai-compat/config.json" ]; then
-        run mkdir -p -m700 "$HOME/.config/pi-openai-compat"
-        run install -Dm600 ${piCompatConfig} "$HOME/.config/pi-openai-compat/config.json"
+    # ~/.pi/agent/live-models.json — permisos estrictos
+    # Solo escribe si el archivo NO existe, para que puedas
+    # añadir más proveedores manualmente sin perderlos en rebuilds.
+    piLiveModelsConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if [ ! -f "$HOME/.pi/agent/live-models.json" ]; then
+        run mkdir -p -m700 "$HOME/.pi/agent"
+        run install -Dm600 ${piLiveModelsConfig} "$HOME/.pi/agent/live-models.json"
       fi
     '';
   };
 }
-  # (rebuild forzado para regenerar config.json)

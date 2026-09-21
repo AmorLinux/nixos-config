@@ -6,3 +6,6 @@ result-*
 *~
 .*.swp
 .DS_Store
+
+# Ignora archivos de recuperacion Backups
+*.bak
