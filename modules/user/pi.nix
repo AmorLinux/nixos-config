@@ -8,7 +8,7 @@ let
   # ============================================================
   piSettings = pkgs.writeText "pi-settings.json" (builtins.toJSON {
     defaultProvider = "omniroute"; # ← Ajusta a "omniroute" si lo prefieres
-    defaultModel = "auto";      # ← El combo o modelo por defecto
+    defaultModel = "auto/best-coding";      # ← El combo o modelo por defecto
     defaultThinkingLevel = "medium";
     packages = [ "npm:pi-live-models" ]; # ← Extensión de descubrimiento dinámico
   });
