@@ -7,7 +7,7 @@ let
   # changelog). Se copia en cada activación con cp/install.
   # ============================================================
   piSettings = pkgs.writeText "pi-settings.json" (builtins.toJSON {
-    defaultProvider = "nvidia"; # ← Ajusta a "omniroute" si lo prefieres
+    defaultProvider = "omniroute"; # ← Ajusta a "omniroute" si lo prefieres
     defaultModel = "auto";      # ← El combo o modelo por defecto
     defaultThinkingLevel = "medium";
     packages = [ "npm:pi-live-models" ]; # ← Extensión de descubrimiento dinámico
