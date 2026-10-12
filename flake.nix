@@ -4,8 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # 👇 NUEVO: pi (agente de IA) empaquetado en Nix                                                             
-    pi-nix.url = "github:takinbo/pi-nix";   
+    # pi (agente de IA) — flake oficial del proyecto, incluye pkgs.pi
+    pi = {
+      url = "github:earendil-works/pi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -28,9 +31,9 @@
           ./hardware-configuration.nix
           ./configuration.nix
 
-          # 👇 NUEVO: overlay de pi-nix para exponer pkgs.pi                                                     
-          ({ pkgs, ... }: {                                                                                      
-            nixpkgs.overlays = [ inputs.pi-nix.overlays.default ];                                               
+          # 👇 overlay oficial de pi para exponer pkgs.pi
+          ({ pkgs, ... }: {
+            nixpkgs.overlays = [ inputs.pi.overlays.default ];
           })
 
           # 👇 Este módulo se aplica desde el inicio
