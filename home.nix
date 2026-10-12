@@ -22,7 +22,7 @@
     bitwarden-desktop
 
     # --- PRIVACIDAD / SEGURIDAD ---
-    keepassxc
+    
     signal-desktop
     element-desktop
     veracrypt
@@ -32,6 +32,9 @@
 
     # --- VPN ---
     proton-vpn
+
+    # --- EDICIÓN DE VÍDEO ---
+    shotcut
 
     # --- EXISTENTES ---
     moonlight-qt

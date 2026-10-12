@@ -9,6 +9,8 @@
     burpsuite
     bruno
     docker-compose
+    cloudflared
+    ollama 
   ];
 
   # ✅ Usa programs.vscodium en lugar de programs.vscode
