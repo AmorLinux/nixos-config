@@ -1,0 +1,14 @@
+# Pi sandbox image — patrón "Plain Docker" de la documentación oficial de Pi
+# (docs/containerization.md). Todo el proceso Pi y sus extensiones corren
+# dentro del contenedor; el host solo expone lo que montemos.
+FROM node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends bash ca-certificates git ripgrep \
+ && rm -rf /var/lib/apt/lists/*
+
+# Version pineada para igualar la instalacion del host (reproducibilidad)
+RUN npm install -g --ignore-scripts @earendil-works/pi-coding-agent@1.1.0
+
+WORKDIR /workspace
+ENTRYPOINT ["pi"]
