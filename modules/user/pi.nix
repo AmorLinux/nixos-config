@@ -5,7 +5,7 @@ let
     defaultProvider = "omni";
     defaultModel = "auto/best-coding";
     defaultThinkingLevel = "medium";
-    packages = [ "npm:pi-omniroute-sync" "npm:pi-web-access@0.38.0" ];
+    packages = [ "npm:pi-omniroute-sync" "npm:pi-web-access@0.40.0" ];
   });
 in
 {

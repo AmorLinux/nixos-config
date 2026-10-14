@@ -2,9 +2,21 @@
 
 ## Pendientes (requieren acción del usuario)
 
+- [ ] `nrs` para instalar Pi 1.2.0 en el perfil (ya construido y probado).
 - [ ] Probar `pi-docker/pi-sandbox.sh` interactivamente.
-- [ ] Commitear los cambios propios pendientes del usuario (flake.nix,
-      home.nix, development.nix, flake.lock — ajenos a la config de Pi).
+
+## Actualización a Pi 1.2.0 (sesión)
+
+- Flake pineado al tag `github:earendil-works/pi/v1.2.0` (no a main: main
+  tiene un error TS conocido en `kimi-coding.ts` a medio migrar).
+- Override local `doInstallCheck = false` en flake.nix: el check del tag
+  v1.2.0 exige `esbuild` que el install-lock no incluye (bug upstream
+  cerrado en #10881; eliminar el override al subir de versión y probar).
+- `pi-web-access` 0.38.0 → 0.40.0 (pi.nix + npm del host).
+- Imagen Docker reconstruida con `pi-coding-agent@1.2.0` y volumen
+  re-sembrado. Smoke tests: host y sandbox OK.
+- Al actualizar Pi: revisar ejemplos oficiales copiados (subagent) y el
+  changelog antes de subir versiones pineadas.
 
 ## Notas de la sesión
 
