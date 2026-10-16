@@ -1,6 +1,6 @@
 { config, pkgs, lib, inputs, ... }: {
   home.username = "amoreira";
-  home.homeDirectory = "/home/amoreira";
+  home.homeDirectory = lib.mkForce "/home/amoreira";
   home.stateVersion = "26.05";
   programs.home-manager.enable = true;
 
