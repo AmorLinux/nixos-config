@@ -14,4 +14,13 @@
 
   # Configurar KWallet para que se desbloquee con la contraseña de inicio de sesión
   security.pam.services.sddm.enableKwallet = true;
+
+  # Deshabilitar Baloo File Indexing
+  environment.etc."baloofilerc" = {
+    text = ''
+      [Basic Settings]
+      Indexing-Enabled=false
+      IndexNewFiles=false
+    '';
+  };
 }
