@@ -2,8 +2,24 @@
 
 ## Pendientes (requieren acción del usuario)
 
-- [ ] `nrs` para instalar Pi 1.2.0 en el perfil (ya construido y probado).
-- [ ] Probar `pi-docker/pi-sandbox.sh` interactivamente.
+- [ ] `nrs` para instalar Pi 1.3.0 en el perfil (ya construido y probado).
+- [ ] Rebuild de la imagen Docker con `pi-coding-agent@1.3.0` y re-siembra
+      del volumen (`docker volume rm pi-agent-home && ./pi-docker/pi-sandbox.sh`).
+
+## Actualización a Pi 1.3.0 (sesión)
+
+- Flake pineado al tag `github:earendil-works/pi/v1.3.0`.
+- Eliminado el override `doInstallCheck = false`: el bug upstream #10881
+  (check exigía `esbuild`) está corregido en 1.3.0; build verificado sin
+  override (`nix build .#nixosConfigurations.laptop.pkgs.pi` OK).
+- Changelog 1.3.0 revisado: sin breaking changes para este setup (afectan
+  solo a overrides de base URL de `kimi-coding` en models.json; no usado).
+- `pi-web-access` 0.40.0 → 0.43.0 (pi.nix; diff upstream revisado: 15
+  commits aditivos, nuevo proveedor xai-search + tests).
+- `permission-gate.ts` sin cambios upstream → copia local sigue válida.
+- Subagent: solo cambió `index.ts` (helper `formatReadLineRange`, cosmético);
+  copia local era idéntica a v1.2.0 oficial → reemplazada por v1.3.0.
+- Dockerfile.pi: `@earendil-works/pi-coding-agent@1.2.0` → `@1.3.0`.
 
 ## Actualización a Pi 1.2.0 (sesión)
 

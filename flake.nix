@@ -6,7 +6,7 @@
 
     # pi (agente de IA) — flake oficial del proyecto, incluye pkgs.pi
     pi = {
-      url = "github:earendil-works/pi/v1.2.0";
+      url = "github:earendil-works/pi/v1.3.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -26,16 +26,11 @@
           ./configuration.nix
 
           # 👇 overlay oficial de pi para exponer pkgs.pi
-          # doInstallCheck=false: el check del tag v1.2.0 exige 'esbuild', que
-          # el install-lock del tag no incluye (bug upstream #10881, ya
-          # corregido en main eliminando ese check). Al subir de versión,
-          # probar primero sin este override.
+          # (doInstallCheck: el bug upstream #10881 que exigía 'esbuild' en el
+          # check estaba en v1.2.0 y se corrigió en 1.3.0; sin override)
           ({ pkgs, ... }: {
             nixpkgs.overlays = [
               inputs.pi.overlays.default
-              (final: prev: {
-                pi = prev.pi.overrideAttrs (_: { doInstallCheck = false; });
-              })
             ];
           })
 
