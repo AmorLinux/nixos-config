@@ -15,15 +15,31 @@
       `psql` (postgresql 18.6, misma versión que el contenedor).
       Telemetría dotnet desactivada (`DOTNET_CLI_TELEMETRY_OPTOUT=1`).
 - `modules/system/docker.nix`: contenedor OCI declarativo `postgres`
-      (`postgres:18.6-alpine` pineada, `127.0.0.1:5432` — solo localhost,
-      volumen nombrado `postgres-data`, POSTGRES_USER/PASSWORD/DB=dev,
-      credenciales dev aceptables por el bind a loopback).
+      (`docker.io/library/postgres:18.6-alpine` pineada, `127.0.0.1:5432` —
+      solo localhost, volumen nombrado `postgres-data`, credenciales dev).
       Connection string:
       `Host=127.0.0.1;Port=5432;Username=dev;Password=dev;Database=dev`
 - Todo construido y verificado: `nix build` de cada paquete OK y
       `nix flake check --no-build` OK.
 - `nix-ld` ya habilitado cubre binarios propietarios que descarga NuGet
       (testhost, etc.).
+
+### Fixes tras el primer switch fallido (podman + HM clobber)
+
+- Descubrimiento: el backend oci-containers resuelto es **podman** (no
+      docker; unidades `podman-*`). Podman exige imágenes fully-qualified
+      → imagen cambiada a `docker.io/library/postgres:18.6-alpine`.
+- PG18: verificada la imagen contra el registry — cambió el layout
+      (`VOLUME /var/lib/postgresql`, `PGDATA=/var/lib/postgresql/18/docker`).
+      El mount se corrigió a `/var/lib/postgresql`; el original
+      (`/var/lib/postgresql/data`) no habría persistido la BD.
+- HM falló con "would be clobbered" por `10-hm-fonts.conf` huérfano →
+      añadido `home-manager.backupFileExtension = "backup"` en flake.nix
+      (HM mueve a *.backup en vez de abortar; fix durable).
+- Caveat latente: omniroute usa imagen short-name (`diegosouzapw/...`);
+      funciona porque la imagen ya está local. Si se borra el storage de
+      podman, calificar a `docker.io/diegosouzapw/omniroute:latest`.
+- Reset del volumen (backend podman): `sudo podman volume rm postgres-data`.
 
 ## Actualización a Pi 1.3.0 (sesión)
 

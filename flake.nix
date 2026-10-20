@@ -46,6 +46,10 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            # Evita abortar el switch si un archivo gestionado ya existe como
+            # huérfano (restos de generaciones antiguas): HM lo mueve a
+            # *.backup en vez de fallar con "would be clobbered".
+            home-manager.backupFileExtension = "backup";
             # 👇 NUEVO: hace que `inputs` esté disponible DENTRO de home.nix
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.amoreira = import ./home.nix;
