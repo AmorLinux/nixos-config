@@ -2,9 +2,28 @@
 
 ## Pendientes (requieren acción del usuario)
 
-- [ ] `nrs` para instalar Pi 1.3.0 en el perfil (ya construido y probado).
+- [ ] `nrs` para aplicar: Pi 1.3.0 + entorno C#/PostgreSQL (todo ya
+      construido y probado en el store).
 - [ ] Rebuild de la imagen Docker con `pi-coding-agent@1.3.0` y re-siembra
       del volumen (`docker volume rm pi-agent-home && ./pi-docker/pi-sandbox.sh`).
+
+## Entorno de desarrollo C# + PostgreSQL (sesión)
+
+- `modules/user/development.nix`: SDK .NET 10 LTS (`sdk_10_0`, 10.0.401),
+      `dotnet-ef` 10.0.9, `csharpier` 1.3.0, Rider 2026.2 (unfree OK por
+      allowUnfree), `dbeaver-bin` 26.2.2 (para futuros gestores), cliente
+      `psql` (postgresql 18.6, misma versión que el contenedor).
+      Telemetría dotnet desactivada (`DOTNET_CLI_TELEMETRY_OPTOUT=1`).
+- `modules/system/docker.nix`: contenedor OCI declarativo `postgres`
+      (`postgres:18.6-alpine` pineada, `127.0.0.1:5432` — solo localhost,
+      volumen nombrado `postgres-data`, POSTGRES_USER/PASSWORD/DB=dev,
+      credenciales dev aceptables por el bind a loopback).
+      Connection string:
+      `Host=127.0.0.1;Port=5432;Username=dev;Password=dev;Database=dev`
+- Todo construido y verificado: `nix build` de cada paquete OK y
+      `nix flake check --no-build` OK.
+- `nix-ld` ya habilitado cubre binarios propietarios que descarga NuGet
+      (testhost, etc.).
 
 ## Actualización a Pi 1.3.0 (sesión)
 
