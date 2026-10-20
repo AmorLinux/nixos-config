@@ -8,7 +8,7 @@
     ./modules/system/virtualization.nix
     ./modules/system/docker.nix
     ./modules/system/searx.nix
-    ./modules/system/desktop-cosmic.nix
+    ./modules/system/desktop-kde.nix
   ];
 
   # ==========================================
@@ -34,6 +34,7 @@
   # ==========================================
   # CONFIGURACIÓN DE HARDWARE Y SISTEMA
   # ==========================================
+  nixpkgs.config.allowUnfree = true;
   hardware.graphics.extraPackages = with pkgs; [
     intel-media-driver   # Para GPUs Intel modernas (6ª gen en adelante)
   ];

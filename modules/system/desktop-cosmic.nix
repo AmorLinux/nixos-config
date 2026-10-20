@@ -5,7 +5,6 @@
   # Enable the COSMIC desktop environment
   services.desktopManager.cosmic.enable = true;
 
-  # Opcionalmente, puedes añadir paquetes extra que quieras que estén presentes
-  # cuando uses COSMIC, o configuraciones específicas de Wayland/Portal.
-  # COSMIC ya maneja sus propios portales y sesión.
+  # Habilitar el anillo de claves para evitar el prompt "Unlock login keyring"
+  services.gnome.gnome-keyring.enable = true;
 }

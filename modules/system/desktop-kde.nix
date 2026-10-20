@@ -1,11 +1,17 @@
 { config, pkgs, ... }: {
-  hardware.graphics.enable = true;
-  
-  # Habilitar el nuevo Plasma Login Manager nativo de KDE
-  services.displayManager.plasma-login-manager.enable = true;
-  
-  # Tu entorno Plasma 6 principal
+  # Activar el entorno de escritorio KDE Plasma
   services.desktopManager.plasma6.enable = true;
   
-  programs.dconf.enable = true;
+  # Activar SDDM como gestor de inicio de sesión
+  services.displayManager.sddm.enable = true;
+
+  # Habilitar soporte para Flatpak
+  services.flatpak.enable = true;
+
+  # Habilitar soporte nativo para AppImage
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
+
+  # Configurar KWallet para que se desbloquee con la contraseña de inicio de sesión
+  security.pam.services.sddm.enableKwallet = true;
 }

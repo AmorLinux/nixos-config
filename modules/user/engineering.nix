@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     arduino rstudio 
     # ciscoPacketTracer9 
-    weka ventoy libreoffice-qt mpv
+    weka libreoffice-qt mpv
     parsec-bin file imagemagick
   ];
   # Nota: auto-cpufreq fue quitado porque conflictúa con power-profiles-daemon
