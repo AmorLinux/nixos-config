@@ -2,8 +2,11 @@
 
 ## Pendientes (requieren acción del usuario)
 
-- [ ] `nrs` para aplicar: Pi 1.3.0 + entorno C#/PostgreSQL (todo ya
-      construido y probado en el store).
+- [x] ~~`nrs` para aplicar: Pi 1.3.0 + entorno C#/PostgreSQL~~ HECHO
+      (2026-10-20, switch limpio; segundo intento tras fixes de podman/HM).
+      Verificado: pi 1.3.0, dotnet SDK 10.0.401, dotnet-ef, csharpier, Rider,
+      dbeaver y psql en PATH; podman-postgres/omniroute y HM activos;
+      conexión psql OK (PostgreSQL 18.6 alpine).
 - [ ] Rebuild de la imagen Docker con `pi-coding-agent@1.3.0` y re-siembra
       del volumen (`docker volume rm pi-agent-home && ./pi-docker/pi-sandbox.sh`).
 
