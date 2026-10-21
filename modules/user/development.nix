@@ -32,6 +32,10 @@
     # --- Cliente psql: misma versión (18.6) que el contenedor de docker.nix ---
     postgresql
 
+    # --- Supabase CLI: backups SQL, migraciones y gestión de proyectos
+    #     (db dump usa pg_dump nativo en linux, no requiere docker) ---
+    supabase-cli
+
     # --- CLI / monitor ---
     htop
     fastfetch
