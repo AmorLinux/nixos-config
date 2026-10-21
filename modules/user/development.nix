@@ -1,5 +1,4 @@
 { config, pkgs, inputs, ... }: {
-  # Entorno de desarrollo C# / .NET + herramientas de bases de datos
   home.packages = with pkgs; [
     # --- C# / .NET 10 (LTS, soporte hasta nov 2028) ---
     dotnetCorePackages.sdk_10_0  # SDK 10.0.401
@@ -10,8 +9,32 @@
     jetbrains.rider               # IDE de C# (incluye herramientas de BD estilo DataGrip)
     dbeaver-bin                    # Cliente universal de BD para futuros gestores (MySQL, SQLite, Oracle...)
 
+    # --- Lenguajes / toolchain general ---
+    python3
+    nodejs
+    gcc
+    cargo
+    rustc
+    jdk
+    jetbrains.idea                 # IntelliJ IDEA
+    android-studio
+
+    # --- Herramientas de API / seguridad / red ---
+    burpsuite
+    bruno
+    docker-compose
+    cloudflared
+    jq
+
+    # --- IA local (CLI; para el daemon declarativo: services.ollama) ---
+    ollama
+
     # --- Cliente psql: misma versión (18.6) que el contenedor de docker.nix ---
     postgresql
+
+    # --- CLI / monitor ---
+    htop
+    fastfetch
   ];
 
   # Desactivar telemetría del CLI de dotnet
@@ -20,7 +43,12 @@
   };
 
   programs.vscodium = {
+    enable = true;
+    package = pkgs.vscodium;
     profiles.default = {
+      extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}; [
+        open-vsx.kilocode.kilo-code
+      ];
       userSettings = {
       };
     };

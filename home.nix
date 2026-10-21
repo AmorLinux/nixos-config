@@ -5,6 +5,7 @@
   programs.home-manager.enable = true;
 
   imports = [
+    ./modules/user/communication.nix
     ./modules/user/development.nix
     ./modules/user/engineering.nix
     ./modules/user/firefox.nix

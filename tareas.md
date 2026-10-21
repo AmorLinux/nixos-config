@@ -44,6 +44,32 @@
       podman, calificar a `docker.io/diegosouzapw/omniroute:latest`.
 - Reset del volumen (backend podman): `sudo podman volume rm postgres-data`.
 
+### Restauración de programas quitados en 15c7577 (sesión)
+
+- El commit propio 15c7577 (19-oct) vació listas enteras de paquetes.
+  Recuperado TODO lo aplicable, organizado por módulo:
+- `modules/user/communication.nix` (NUEVO, importado en home.nix):
+      discord, zoom-us, qbittorrent.
+- `modules/user/development.nix`: python3, nodejs, gcc, cargo, rustc,
+      jdk, jetbrains.idea, android-studio, burpsuite, bruno, docker-compose,
+      cloudflared, jq, ollama (CLI), htop, fastfetch + vscodium con
+      extensión kilocode (`open-vsx.kilocode.kilo-code` 7.8.15, verificada
+      en el catálogo; input nix-vscode-extensions re-añadido al flake).
+- `modules/system/packages.nix`: wget, git, nano, unrar, android-tools;
+      nix-ld re-habilitado (enable=true + libstdc++/openssl) — quedó en
+      false tras 15c7577; AppImages/binarios propietarios dependen de él.
+- NO restaurado (con razón):
+      - `pulseaudio` (pkg): services.pipewire sigue activo (services.nix).
+      - `swayidle` (pkg): específico de Sway; ya en sway-config.nix.
+      - `android-udev-rules`: ELIMINADO de nixpkgs; systemd 258 maneja
+        uaccess automáticamente. `programs.adb` también fue removido.
+        android-tools en systemPackages es lo correcto (como el original).
+      - `electron`/`ventoy` en allowInsecurePredicate: whitelist stale;
+        electron-39 ya está pineado específicamente en flake.nix (más seguro).
+- Todo pre-compilado en el store (incluidos android-studio 2026.2.1.8 e
+      intellij-idea 2026.2.3); flake check OK.
+- Pendiente: `nrs` para aplicar.
+
 ## Actualización a Pi 1.3.0 (sesión)
 
 - Flake pineado al tag `github:earendil-works/pi/v1.3.0`.
