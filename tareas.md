@@ -70,6 +70,20 @@
       intellij-idea 2026.2.3); flake check OK.
 - Pendiente: `nrs` para aplicar.
 
+### Validación de restore local del backup de Supabase (sesión)
+
+- Restaurado en el postgres local (docker.nix, 127.0.0.1:5432, user dev=superuser)
+  a una BD `test_restore`: 10/10 tablas y 117 filas OK, incluidas las del
+  FK circular profiles↔institutions.
+- Truco FK circular: `SET session_replication_role = replica;` ANTES de
+  `\i data.sql` **en la misma sesión psql** (ajuste por-sesión; un `-c`
+  separado NO aplica) — corrección respecto a la receta previa.
+- Errores esperados local (plataforma, no tu esquema): GRANTs a rol postgres,
+  policies de auth.*, schema storage.*, extensión supabase_vault. Para un
+  restore local 100% fiel usar `supabase start` (stack local completo).
+- Nota: roles.sql de supabase contiene hashes de contraseña — no cat/commitear.
+- data.sql/roles.sql: guardar fuera del repo público.
+
 ## Actualización a Pi 1.3.0 (sesión)
 
 - Flake pineado al tag `github:earendil-works/pi/v1.3.0`.
